@@ -1,0 +1,21 @@
+Confiscate: false
+UpdateChecker: false
+WorldBlockRemove: false
+Worlds:
+- world
+- skyworld
+- world_nether
+- world_the_end
+- world_1
+- world_2
+- world_3
+Blacklist:
+- '33:0:이 아이템은 사용할 수 없습니다. '
+- '29:0:이 아이템은 사용할 수 없습니다. '
+- '343:0:이 아이템은 사용할 수 없습니다. '
+Blacklist Placement: []
+Blacklist Pickup: []
+Blacklist Interaction: []
+Blacklist Click: []
+Blacklist Break: []
+Blacklist World: []

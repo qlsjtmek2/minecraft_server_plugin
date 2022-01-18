@@ -1,0 +1,11 @@
+name: DHCash
+main: me.shinkhan.cash.main
+version: 1.0
+author: shinkhan
+commands:
+  캐시:
+    description: DHCash Plugin
+  Cash:
+    description: DHCash Plugin
+  ca:
+    description: DHCash Plugin

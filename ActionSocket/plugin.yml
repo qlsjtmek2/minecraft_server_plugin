@@ -1,0 +1,12 @@
+name: ActionSocket
+version: 1.0
+main: me.espoo.socket.main
+author: shinkhan
+
+commands:
+  소켓제작:
+    description: ActionSocket Plugin
+  소켓오픈:
+    description: ActionSocket Plugin
+  소켓:
+    description: ActionSocket Plugin

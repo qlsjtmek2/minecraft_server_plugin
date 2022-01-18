@@ -1,0 +1,41 @@
+####################################
+#           Status Sign            # (수정자: shinkhan)
+####################################
+permissions:
+   # 상태 표지판을 활성화 할지 안할지 여부 (true, false)
+   # true로 할 경우, Vault 플러그인이 있는지 확인
+   enabled: true
+messages:
+   translation:
+      online: 온라인
+      offline: 오프라인
+      since: 최근 접속
+      day: 일
+      hour: 시간 전
+      lasthour: 방금 접속
+
+options:
+   color:
+      # 색깔 목록 : 
+      # Aqua, Black, Blue, Dark_Aqua, Dark_Blue, Dark_Gray, Dark_Green, Dark_Purple, Dark_Red, Gold, Gray, Green, Light_Purple, Red, White, Yellow
+      online: Dark_Purple
+      offline: Dark_Blue
+
+   configuration:
+      # 오프라인 기호에 표시할 값은 두개 있습니다. (timestamp, liveDelay)
+      # timestamp는, d/M H:mm에 날짜를 입력합니다.
+      # liveDelay는, 30분씩 플레이어의 상태를 업데이트 합니다.
+      offline: liveDelay
+      
+      # LiveDelay : 지연 시간 (초)를 지정합니다.
+      refreshDelay: 1800
+      
+      # LieDelay : 당신은 "날짜", "시간" 뒤에 복수형을 추가할 지 설정합니다. (true, false)
+      offlinePlurial: false
+      
+      # Timestamp : 사용하고자 하는 Timestamp 형식을 지정합니다. 본래 자바의 Timestamp 형식의 기본이 되는것을 사용합니다. (dd/MM HH:mm).
+      timestampFormat: dd/MM HH:mm
+      
+      # 표지판에 첫번째 줄에 나올 문구를 설정합니다. (비 대소문자 구문)
+      customTag: status
+   

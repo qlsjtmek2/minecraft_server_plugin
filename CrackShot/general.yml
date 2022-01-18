@@ -1,0 +1,8 @@
+#Use this node to completely disable CrackShot in certain worlds. Example usage:
+#Disabled_Worlds:
+#    - world_nether
+#    - world_the_end
+#    - world_foldername
+#"Disabled_Worlds: []" means the list is empty. Change it to "Disabled_Worlds:" before listing worlds.
+#Remember not to use any tabs. The spacing must also be correct. Good luck.
+Disabled_Worlds: []

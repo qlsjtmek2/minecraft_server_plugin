@@ -1,0 +1,10 @@
+name: OnePunchScore
+version: 1.0
+main: me.espoo.score.main
+author: shinkhan
+
+commands:
+  점수:
+    description: OnePunchScore Plugin
+  등록:
+    description: OnePunchScore Plugin

@@ -1,0 +1,10 @@
+name: OnePunchUpGrade
+version: 1.0
+main: me.espoo.upgrade.main
+author: shinkhan
+
+commands:
+  도구:
+    description: OnePunchUpGrade Plugin
+  주문서지급:
+    description: OnePunchUpGrade Plugin

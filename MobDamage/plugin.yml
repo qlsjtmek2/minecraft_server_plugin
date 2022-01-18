@@ -1,0 +1,12 @@
+name: MobDamage
+main: com.i2.mobdamage.MobDamage
+version: 1.1
+description:
+  Change Mob Health Easily.
+commands:
+  mobdamage:
+    description: ModDamage Command
+permissions:
+    mobdamage.reload:
+      description: Reload MobDamage config file
+      default: false

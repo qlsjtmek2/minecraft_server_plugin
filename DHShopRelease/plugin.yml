@@ -1,0 +1,11 @@
+name: DHShopRelease
+version: 1.4
+author: shinkhan
+softdepend: []
+main: me.shinkhan.shop.main
+
+commands:
+   상점오픈:
+      description: DHShopRelease command
+   shopcheck:
+      description: DHShopRelease command

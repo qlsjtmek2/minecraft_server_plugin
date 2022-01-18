@@ -1,0 +1,10 @@
+name: DHWarning
+version: 1.0
+main: me.shinkhan.warning.main
+author: shinkhan
+
+commands:
+  경고:
+    description: DHWarning Plugin
+  wa:
+    description: DHWarning Plugin

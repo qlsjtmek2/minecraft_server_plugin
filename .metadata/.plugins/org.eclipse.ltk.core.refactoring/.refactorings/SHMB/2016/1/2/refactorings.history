@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;plugin.yml&apos; to &apos;SHMB&apos;&#x0D;&#x0A;- 원래 프로젝트: &apos;SHMB&apos;&#x0D;&#x0A;- 대상 요소: &apos;SHMB&apos;&#x0D;&#x0A;- 원래 요소: &apos;plugin.yml&apos;&#x0D;&#x0A;- 리팩토링된 요소에 대한 참조 갱신" description="파일 이동" destination="=SHMB" element1="src/plugin.yml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1451952095454" units="0" version="1.0"/>
+</session>

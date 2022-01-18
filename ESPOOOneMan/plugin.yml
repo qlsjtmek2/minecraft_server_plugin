@@ -1,0 +1,79 @@
+name: ESPOOOneMan
+main: me.espoo.oneman.main
+version: 1.2
+softdepend: [Vault, RPG Items, LogBlock]
+author: shinkhan
+
+commands:
+  ec:
+    description: ESPOOOneMan Plugin
+  채팅청소:
+    description: ESPOOOneMan Plugin
+  cc:
+    description: ESPOOOneMan Plugin
+  정지:
+    description: ESPOOOneMan Plugin
+  블럭:
+    description: ESPOOOneMan Plugin
+  무적:
+    description: ESPOOOneMan Plugin
+  채팅:
+    description: ESPOOOneMan Plugin
+  만렙:
+    description: ESPOOOneMan Plugin
+  쓰레기통:
+    description: ESPOOOneMan Plugin
+  표지판:
+    description: ESPOOOneMan Plugin
+  지급:
+    description: ESPOOOneMan Plugin
+  수표:
+    description: ESPOOOneMan Plugin
+  인첸트:
+    description: ESPOOOneMan Plugin
+  인첸트목록:
+    description: ESPOOOneMan Plugin
+  아이템금지: 
+    description: ESPOOOneMan Plugin
+  랜덤돈:
+    description: ESPOOOneMan Plugin
+  랜덤선물:
+    description: ESPOOOneMan Plugin
+  랜덤칭호: 
+    description: ESPOOOneMan Plugin
+  랜덤스텟: 
+    description: ESPOOOneMan Plugin
+  장비추첨: 
+    description: ESPOOOneMan Plugin
+  랜덤무기큐브:
+    description: ESPOOOneMan Plugin
+  랜덤장비큐브:
+    description: ESPOOOneMan Plugin
+  광산랜덤무기큐브:
+    description: ESPOOOneMan Plugin
+  광산금가루:
+    description: ESPOOOneMan Plugin
+  물건구매:
+    description: ESPOOOneMan Plugin
+  o:
+    description: ESPOOOneMan Plugin
+  던전아이템give:
+    description: ESPOOOneMan Plugin
+  bn:
+    description: ESPOOOneMan Plugin
+  로비:
+    description: ESPOOOneMan Plugin
+  자살:
+    description: ESPOOOneMan Plugin
+  스폰:
+    description: ESPOOOneMan Plugin
+  넴주:
+    description: ESPOOOneMan Plugin
+  tmvhs:
+    description: ESPOOOneMan Plugin
+  홈:
+    description: ESPOOOneMan Plugin
+  셋홈:
+    description: ESPOOOneMan Plugin
+  길드땅이동:
+    description: ESPOOOneMan Plugin

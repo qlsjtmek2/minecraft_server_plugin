@@ -1,0 +1,8 @@
+name: test
+main: me.main
+author: shinkhan
+version: 1.0
+
+commands:
+  test:
+    description: test

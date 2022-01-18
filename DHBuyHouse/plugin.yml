@@ -1,0 +1,10 @@
+name: DHBuyHouse
+version: 1.1
+main: me.shinkhan.BuyHouse.main
+author: shinkhan
+
+commands:
+  housecheck:
+    description: DHBuyHouse plugin
+  자동구매:
+    description: DHBuyHouse plugin

@@ -1,0 +1,7 @@
+author: Golden_Mine
+name: BlockMCBug
+main: GoldenMine.Main
+version: 3.3
+commands:
+  blockmcbug:
+    description: this is the Command you can look help of this plugin.

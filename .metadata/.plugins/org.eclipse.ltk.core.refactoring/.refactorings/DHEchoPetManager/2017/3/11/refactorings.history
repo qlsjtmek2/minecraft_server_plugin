@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;PlayerTimer.java&apos; to &apos;ActionGuildParty/src/me.espoo.rpg.guild&apos;&#x0D;&#x0A;- 원래 프로젝트: &apos;DHEchoPetManager&apos;&#x0D;&#x0A;- 대상 요소: &apos;ActionGuildParty/src/me.espoo.rpg.guild&apos;&#x0D;&#x0A;- 원래 요소: &apos;me.shinkhan.epm.PlayerTimer.java&apos;" description="컴파일 단위 복사" destination="=ActionGuildParty/src&lt;me.espoo.rpg.guild" element1="/src&lt;me.shinkhan.epm{PlayerTimer.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1489328453557" units="1" version="1.0"/>
+</session>

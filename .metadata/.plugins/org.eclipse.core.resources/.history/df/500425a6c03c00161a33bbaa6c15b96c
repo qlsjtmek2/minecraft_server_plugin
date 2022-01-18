@@ -1,0 +1,22 @@
+package me.espoo.score;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class mainEvent extends JavaPlugin implements Listener {
+	main M;
+	
+	public mainEvent(main main)
+	{
+		this.M = main;
+	}
+	
+    @EventHandler
+    public void onChat(final AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+        e.setFormat(String.valueOf(pp.getMainPrefix()) + " ¡×r" + event.getFormat());
+    }
+}

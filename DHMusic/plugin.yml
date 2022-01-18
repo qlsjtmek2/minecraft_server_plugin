@@ -1,0 +1,11 @@
+name: DHMusic
+version: 1.2
+author: shinkhan
+softdepend: []
+main: me.shinkhan.music.main
+
+commands:
+   음악:
+      description: DHMusic command
+   musiccheck:
+      description: DHMusic command

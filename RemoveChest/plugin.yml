@@ -1,0 +1,4 @@
+name: RemoveChest
+version: 1.0
+main: me.espoo.removechest.main
+author: shinkhan

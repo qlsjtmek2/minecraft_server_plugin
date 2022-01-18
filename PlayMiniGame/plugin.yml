@@ -1,0 +1,22 @@
+name: PlayMiniGame
+version: 1.0
+main: me.espoo.mg.main
+softdepend: []
+author: shinkhan
+commands:
+  MG:
+    description: PlayMiniGame Plugin
+  MiniGame:
+    description: PlayMiniGame Plugin
+  미니게임:
+    description: PlayMiniGame Plugin
+  점수:
+    description: PlayMiniGame Plugin
+  스코어:
+    description: PlayMiniGame Plugin
+  score:
+    description: PlayMiniGame Plugin
+  wjatn:
+    description: PlayMiniGame Plugin
+  tmzhdj:
+    description: PlayMiniGame Plugin

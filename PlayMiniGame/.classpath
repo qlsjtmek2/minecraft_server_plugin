@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="D:/서버 버킷 폴더/미니게임/미니게임/plugins/[호환]Vault.jar"/>
+	<classpathentry kind="lib" path="D:/서버 버킷 폴더/미니게임/미니게임/plugins/[보스바]BarAPI-1.5.2.jar"/>
+	<classpathentry kind="lib" path="D:/서버 버킷 폴더/미니게임/미니게임/plugins/[월드에딧]WorldEdit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/craftbukkit.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

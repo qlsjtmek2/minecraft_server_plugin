@@ -1,0 +1,449 @@
+// 
+// Decompiled by Procyon v0.5.29
+// 
+
+package com.SHGroup.SHMB;
+
+import java.util.List;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.entity.Player;
+import java.util.Iterator;
+import org.bukkit.Location;
+import org.bukkit.entity.Item;
+import java.util.TimerTask;
+import java.util.Timer;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.Sound;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.Material;
+import java.util.ArrayList;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Snowball;
+import java.util.HashMap;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin implements Listener
+{
+    static HashMap<Snowball, ItemStack> list;
+    static ItemStack Grenade;
+    static ItemStack SmallBomb;
+    static ItemStack LittleSmallBomb;
+    static ItemStack Bomb;
+    static ItemStack LargeBomb;
+    static ItemStack Nuclear;
+    static ItemStack HydrogenBomb;
+    static ItemStack WaterBomb;
+    static ItemStack LavaBomb;
+    public static ArrayList<Player> spam = new ArrayList<Player>();
+    SHUti util;
+    
+    static {
+        Main.list = new HashMap<Snowball, ItemStack>();
+        Main.Grenade = null;
+        Main.SmallBomb = null;
+        Main.LittleSmallBomb = null;
+        Main.Bomb = null;
+        Main.LargeBomb = null;
+        Main.Nuclear = null;
+        Main.HydrogenBomb = null;
+        Main.WaterBomb = null;
+        Main.LavaBomb = null;
+    }
+    
+    public void onEnable() {
+        this.util = new SHUti(this.getDescription());
+        this.getServer().getPluginManager().registerEvents((Listener)this, (Plugin)this);
+        final ArrayList<String> lore = new ArrayList<String>();
+        lore.add("§7분류: §f근접무기");
+        lore.add("§7폭발력:§f 30");
+        Main.Grenade = this.util.createItem(Material.SLIME_BALL, 1, "§e수류탄", lore);
+        lore.clear();
+        lore.add("§7분류: §f근접무기");
+        lore.add("§7폭발력:§f 20");
+        Main.WaterBomb = this.util.createItem(Material.SLIME_BALL, 1, "§e물 폭탄", lore);
+        lore.clear();
+        lore.add("§7분류: §f원거리 무기");
+        lore.add("§7폭발력:§f 20");
+        Main.SmallBomb = this.util.createItem(Material.SLIME_BALL, 1, "§e작은 폭탄", lore);
+        lore.clear();
+        lore.add("§7분류: §f원거리 무기");
+        lore.add("§7폭발력:§f 30");
+        Main.LittleSmallBomb = this.util.createItem(Material.SLIME_BALL, 1, "§e조금 작은 폭탄", lore);
+        lore.clear();
+        lore.add("§7분류: §f원거리 무기");
+        lore.add("§7폭발력:§f 50");
+        Main.Bomb = this.util.createItem(Material.SLIME_BALL, 1, "§e폭탄", lore);
+        lore.clear();
+        lore.add("§7분류: §f원거리 무기");
+        lore.add("§7폭발력:§f 80");
+        Main.LargeBomb = this.util.createItem(Material.SLIME_BALL, 1, "§e큰 폭탄", lore);
+    }
+    
+    public void onDisable() {}
+    
+    @EventHandler
+    public void onThrow(final PlayerInteractEvent e) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
+            final Player player = e.getPlayer();
+            if (player.getItemInHand().getItemMeta() == null) {
+                return;
+            }
+            final ItemStack i = player.getItemInHand();
+            if (i.getItemMeta() == null || i.getItemMeta().getLore() == null || i.getItemMeta().getDisplayName() == null) {
+                return;
+            }
+            if (this.isSmae(i, Main.Grenade)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.Grenade });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        player.getEyeLocation();
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.Grenade);
+                        its.setMetadata("Grenade", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        its.setVelocity(player.getEyeLocation().getDirection());
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                its.getWorld().createExplosion(its.getLocation(), 3.0f);
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                        	@Override
+                        	public void run() {
+                        		Main.spam.remove(player);
+                        	}
+                        }, 100L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 5초가 남아 폭탄을 던질 수 없습니다.");
+                	return;
+                }
+            }
+            if (this.isSmae(i, Main.WaterBomb)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.WaterBomb });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        player.getEyeLocation();
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.WaterBomb);
+                        its.setMetadata("WaterBomb", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        its.setVelocity(player.getEyeLocation().getDirection());
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                for (final Location l : Main.getList(its.getLocation(), 5, false)) {
+                                    if (l.getBlock().getType() == Material.BEDROCK || l.getBlock().getType() == Material.CHEST) {
+                                        continue;
+                                    }
+                                    l.getBlock().setType(Material.WATER);
+                                }
+                                player.playSound(player.getLocation(), Sound.EXPLODE, 100.0f, 100.0f);
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                        	@Override
+                        	public void run() {
+                        		Main.spam.remove(player);
+                        	}
+                        }, 100L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 5초가 남아 폭탄을 던질 수 없습니다.");
+                   	return;
+                }
+            }
+            if (this.isSmae(i, Main.SmallBomb)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.SmallBomb });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.SmallBomb);
+                        its.setMetadata("SmallBomb", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        this.setVeloty(its, player);
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                its.getWorld().createExplosion(its.getLocation(), 2.0f);
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                        	@Override
+                        	public void run() {
+                        		Main.spam.remove(player);
+                        	}
+                        }, 100L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 5초가 남아 폭탄을 던질 수 없습니다.");
+                   	return;
+                }
+            }
+            if (this.isSmae(i, Main.LittleSmallBomb)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.LittleSmallBomb });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.LittleSmallBomb);
+                        its.setMetadata("LittleSmallBomb", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        this.setVeloty(its, player);
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                its.getWorld().createExplosion(its.getLocation(), 3.0f);
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                        	@Override
+                        	public void run() {
+                        		Main.spam.remove(player);
+                        	}
+                        }, 100L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 5초가 남아 폭탄을 던질 수 없습니다.");
+                   	return;
+                }
+            }
+            if (this.isSmae(i, Main.Bomb)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.Bomb });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.Bomb);
+                        its.setMetadata("Bomb", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        this.setVeloty(its, player);
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                its.getWorld().createExplosion(its.getLocation(), 5.0f);
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                        	@Override
+                        	public void run() {
+                        		Main.spam.remove(player);
+                        	}
+                        }, 100L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 5초가 남아 폭탄을 던질 수 없습니다.");
+                   	return;
+                }
+            }
+            if (this.isSmae(i, Main.LargeBomb)) {
+            	if (!(spam.contains(player))) {
+            		if (!(player.getWorld().getName().equalsIgnoreCase("world_TTLA")))
+            		{
+                        player.getInventory().removeItem(new ItemStack[] { Main.LargeBomb });
+                        this.util.upInv(player);
+                        player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 100.0f, 100.0f);
+                        Item its = player.getWorld().dropItem(player.getEyeLocation(), Main.LargeBomb);
+                        its.setMetadata("LargeBomb", (MetadataValue)new FixedMetadataValue((Plugin)this, (Object)0));
+                        this.setVeloty(its, player);
+                        spam.add(player);
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                for (final Location l : Main.getList(its.getLocation(), 16, false)) {
+                                    if (l.getBlock().getType() == Material.BEDROCK || l.getBlock().getType() == Material.CHEST) {
+                                        continue;
+                                    }
+                                    l.getBlock().setType(Material.AIR);
+                                }
+                                its.remove();
+                                this.cancel();
+                            }
+                        }, 3000L, 3000L);
+                        
+                        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin)Main.this, (Runnable)new Runnable() {
+                            @Override
+                            public void run() {
+                                Main.spam.remove(player);
+                            }
+                        }, 400L);
+                       	return;
+            		} else {
+                    	player.sendMessage("§c튜토리얼이나 죽는 장소에서 폭탄을 던지실 수 없습니다.");
+                    	return;
+            		}
+                } else {
+                	player.sendMessage("§c쿨타임 20초가 남아 폭탄을 던질 수 없습니다.");
+                   	return;
+                }
+            }
+        }
+    }
+    
+    private void setVeloty(final Item item, final Player player) {
+        item.setVelocity(player.getEyeLocation().getDirection().add(player.getEyeLocation().getDirection()));
+    }
+    
+    private boolean isSmae(final ItemStack item1, final ItemStack item2) {
+        return item1.getItemMeta().getDisplayName().equals(item2.getItemMeta().getDisplayName()) && item1.getType() == item2.getType() && item1.getItemMeta().getLore().equals(item2.getItemMeta().getLore());
+    }
+    
+    @EventHandler
+    public void onEat(final PlayerPickupItemEvent e) {
+        if (e.getItem().hasMetadata("Grenade")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("WaterBomb")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("SmallBomb")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("LittleSmallBomb")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("Bomb")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("LargeBomb")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("Nuclear")) {
+            e.setCancelled(true);
+        }
+        if (e.getItem().hasMetadata("hydrogen")) {
+            e.setCancelled(true);
+        }
+    }
+    
+    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+        if (args.length == 2 && args[0].equals("지급")) {
+            if (!sender.isOp()) {
+                sender.sendMessage("§c당신은 권한이 없습니다.");
+                return true;
+            }
+            if (!(sender instanceof Player)) {
+                sender.sendMessage(ChatColor.RED + "버킷에선 사용이 불가능합니다.");
+                return true;
+            }
+            final Player p = (Player)sender;
+            Label_0651: {
+                final String s;
+                switch (s = args[1]) {
+                    case "조금작은폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.LittleSmallBomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.Bomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "물폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.WaterBomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "수류탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.Grenade });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "큰폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.LargeBomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "핵폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.Nuclear });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "수소폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.HydrogenBomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    case "작은폭탄": {
+                        p.getInventory().addItem(new ItemStack[] { Main.SmallBomb });
+                        this.util.upInv(p);
+                        break Label_0651;
+                    }
+                    default:
+                        break;
+                }
+                this.util.msg(p, "이름이 올바르지 않습니다.");
+                return true;
+            }
+        }
+        return true;
+    }
+    
+    public static List<Location> getList(final Location location, final int radius, final boolean hollow) {
+        final List<Location> circleBlocks = new ArrayList<Location>();
+        final int bX = location.getBlockX();
+        final int bY = location.getBlockY();
+        final int bZ = location.getBlockZ();
+        for (int x = bX - radius; x <= bX + radius; ++x) {
+            for (int y = bY - radius; y <= bY + radius; ++y) {
+                for (int z = bZ - radius; z <= bZ + radius; ++z) {
+                    final double distance = (bX - x) * (bX - x) + (bZ - z) * (bZ - z) + (bY - y) * (bY - y);
+                    if (distance < radius * radius && (!hollow || distance >= (radius - 1) * (radius - 1))) {
+                        final Location l = new Location(location.getWorld(), (double)x, (double)y, (double)z);
+                        circleBlocks.add(l);
+                    }
+                }
+            }
+        }
+        return circleBlocks;
+    }
+}

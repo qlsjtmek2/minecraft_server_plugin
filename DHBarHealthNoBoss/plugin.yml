@@ -1,0 +1,9 @@
+name: DHBarHealth
+version: 1.4
+main: me.shinkhan.BarHealth.main
+softdepend: [BarAPI]
+author: shinkhan
+
+commands:
+  barcheck:
+    description: DHBarHealth plugin

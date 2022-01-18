@@ -1,0 +1,6 @@
+name: CroZombie
+version: 1.0
+main: Cro.Zombie.Command.CroZombie
+commands:
+  좀비:
+    description: CroZombie

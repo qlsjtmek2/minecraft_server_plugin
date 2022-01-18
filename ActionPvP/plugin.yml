@@ -1,0 +1,24 @@
+name: ActionPvP
+version: 1.0
+main: me.espoo.pvp.main
+author: shinkhan
+
+commands:
+  대련:
+    description: ActionPvP Plugin
+  대전:
+    description: ActionPvP Plugin
+  PVP:
+    description: ActionPvP Plugin
+  대련위치:
+    description: ActionPvP Plugin
+  대전위치:
+    description: ActionPvP Plugin
+  PVP위치:
+    description: ActionPvP Plugin
+  대련취소:
+    description: ActionPvP Plugin
+  대전취소:
+    description: ActionPvP Plugin
+  경기취소:
+    description: ActionPvP Plugin

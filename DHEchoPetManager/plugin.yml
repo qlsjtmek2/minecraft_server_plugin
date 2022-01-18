@@ -1,0 +1,8 @@
+name: DHEchoPetManager
+main: me.shinkhan.epm.main
+author: shinkhan
+version: 1.0
+
+commands:
+  펫:
+    description: DHEchoPetManager server

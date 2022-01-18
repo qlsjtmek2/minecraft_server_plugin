@@ -1,0 +1,12 @@
+name: OnePunchSetEffect
+version: 1.0
+main: me.espoo.seteffect.main
+author: shinkhan
+
+commands:
+  abcd1:
+    description: OnePunchSetEffect Plugin
+  abcd2:
+    description: OnePunchSetEffect Plugin
+  abcd3:
+    description: OnePunchSetEffect Plugin

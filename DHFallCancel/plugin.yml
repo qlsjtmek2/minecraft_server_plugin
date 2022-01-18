@@ -1,0 +1,7 @@
+name: DHFallCancel
+main: me.shinkhan.DHFallCancel.DHMain
+version: 1.5
+
+commands:
+  낙뎀:
+     description: 낙사 데미지 도움말을 봅니다.

@@ -1,0 +1,10 @@
+name: DHInquiry
+version: 1.0
+main: me.shinkhan.inquiry.main
+author: shinkhan
+
+commands:
+  문의:
+    description: DHInquiry Plugin
+  q:
+    description: DHInquiry Plugin

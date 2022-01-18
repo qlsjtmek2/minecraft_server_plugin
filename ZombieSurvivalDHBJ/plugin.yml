@@ -1,0 +1,10 @@
+name: ZombieSurvivalDH
+version: 1.1
+main: me.espoo.zsdh.main
+commands:
+  zs:
+    description: Zombie Survival
+  좀비:
+    description: Zombie Survival
+  총:
+    description: Zombie Survival

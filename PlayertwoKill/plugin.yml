@@ -1,0 +1,9 @@
+name: PlayertwoKill
+main: me.espoo.ptk.main
+version: 1.0
+softdepend: []
+author: shinkhan
+
+commands:
+  대련:
+    description: PvP 명령어 도움말

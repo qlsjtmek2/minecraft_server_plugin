@@ -1,0 +1,138 @@
+main: com.linmalu.Main.AutomaticTriggers
+name: AutomaticTriggers
+version: 1.0.7
+author: linmalu
+
+commands:
+    atrigger:
+        description: 'AutomaticTriggers 도움말'
+        aliases: [at]
+        usage: '명령어 : /<command>'
+    atarea:
+        description: '공간 생성'
+        aliases: [ata]
+        usage: '명령어 : /<command> [공간이름] [내용]'
+    atareaset:
+        description: '공간 위치 설정'
+        aliases: [atas]
+        usage: '명령어 : /<command>'
+    atareaadd:
+        description: '공간 내용 추가'
+        aliases: [ataa]
+        usage: '명령어 : /<command> [공간이름] [줄번호] [내용]'
+    atarearemove:
+        description: '공간 내용 삭제'
+        aliases: [atar]
+        usage: '명령어 : /<command> [공간이름] [줄번호]'
+    atareaedit:
+        description: '공간 내용 수정'
+        aliases: [atae]
+        usage: '명령어 : /<command> [공간이름] [줄번호] [내용]'
+    atareaview:
+        description: '공간 내용 보기'
+        aliases: [atav]
+        usage: '명령어 : /<command> [공간이름]'
+    atareadelete:
+        description: '공간 삭제'
+        aliases: [atad]
+        usage: '명령어 : /<command> [공간이름]'
+    atcommand:
+        description: '명령어 생성'
+        aliases: [atc]
+        usage: '명령어 : /<command> [명령어이름] [내용]'
+    atcommandoverride:
+        description: '명령어 덮어쓰기 설정'
+        aliases: [atco]
+        usage: '명령어 : /<command> [명령어이름] [true/false]'
+    atcommandadd:
+        description: '명령어 내용 추가'
+        aliases: [atca]
+        usage: '명령어 : /<command> [명령어이름] [줄번호] [내용]'
+    atcommandremove:
+        description: '명령어 내용 삭제'
+        aliases: [atcr]
+        usage: '명령어 : /<command> [명령어이름] [줄번호]'
+    atcommandedit:
+        description: '명령어 내용 수정'
+        aliases: [atce]
+        usage: '명령어 : /<command> [명령어이름] [줄번호] [내용]'
+    atcommandview:
+        description: '명령어 내용 보기'
+        aliases: [atcv]
+        usage: '명령어 : /<command> [명령어이름]'
+    atcommanddelete:
+        description: '명령어 삭제'
+        aliases: [atcd]
+        usage: '명령어 : /<command> [명령어이름]'
+    atevent:
+        description: '이벤트 생성'
+        aliases: [ate]
+        usage: '명령어 : /<command> [이벤트이름] [내용]'
+    ateventadd:
+        description: '이벤트 내용 추가'
+        aliases: [atea]
+        usage: '명령어 : /<command> [이벤트이름] [줄번호] [내용]'
+    ateventremove:
+        description: '이벤트 내용 삭제'
+        aliases: [ater]
+        usage: '명령어 : /<command> [이벤트이름] [줄번호]'
+    ateventedit:
+        description: '이벤트 내용 수정'
+        aliases: [atee]
+        usage: '명령어 : /<command> [이벤트이름] [줄번호] [내용]'
+    ateventview:
+        description: '이벤트 내용 보기'
+        aliases: [atev]
+        usage: '명령어 : /<command> [이벤트이름]'
+    ateventdelete:
+        description: '이벤트 삭제'
+        aliases: [ated]
+        usage: '명령어 : /<command> [이벤트이름]'
+    attouch:
+        description: '터치 생성'
+        aliases: [att]
+        usage: '명령어 : /<command> [내용]'
+    attouchadd:
+        description: '터치 내용 추가'
+        aliases: [atta]
+        usage: '명령어 : /<command> [줄번호] [내용]'
+    attouchremove:
+        description: '터치 내용 삭제'
+        aliases: [attr]
+        usage: '명령어 : /<command> [줄번호]'
+    attouchedit:
+        description: '터치 내용 수정'
+        aliases: [atte]
+        usage: '명령어 : /<command> [줄번호] [내용]'
+    attouchview:
+        description: '터치 내용 보기'
+        aliases: [attv]
+        usage: '명령어 : /<command>'
+    attouchdelete:
+        description: '터치 삭제'
+        aliases: [attd]
+        usage: '명령어 : /<command>'
+    atwalk:
+        description: '발판 생성'
+        aliases: [atw]
+        usage: '명령어 : /<command> [내용]'
+    atwalkadd:
+        description: '발판 내용 추가'
+        aliases: [atwa]
+        usage: '명령어 : /<command> [줄번호] [내용]'
+    atwalkremove:
+        description: '발판 내용 삭제'
+        aliases: [atwr]
+        usage: '명령어 : /<command> [줄번호]'
+    atwalkedit:
+        description: '발판 내용 수정'
+        aliases: [atwe]
+        usage: '명령어 : /<command> [줄번호] [내용]'
+    atwalkview:
+        description: '발판 내용 보기'
+        aliases: [atwv]
+        usage: '명령어 : /<command>'
+    atwalkdelete:
+        description: '발판 삭제'
+        aliases: [atwd]
+        usage: '명령어 : /<command>'

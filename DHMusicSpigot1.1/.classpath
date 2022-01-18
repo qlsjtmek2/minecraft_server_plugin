@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/서버 버킷폴더/원펀맨 서버/원펀맨/plugins/[음악]NoteBlockAPI 1.1.0v.jar"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/서버 버킷폴더/원펀맨 서버/원펀맨/plugins/[음악]DKLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/spigot-1.5.2-R1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

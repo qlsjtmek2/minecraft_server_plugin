@@ -1,0 +1,8 @@
+name: OnePunchLoon
+version: 1.0
+main: me.espoo.loon.main
+author: shinkhan
+
+commands:
+  룬:
+    description: OnePunchLoon Plugin

@@ -1,0 +1,7 @@
+name: backupinv
+main: kr.mcpaw.kr.main
+version: 1.1
+
+commands:
+  idplb:
+    description: idplb command

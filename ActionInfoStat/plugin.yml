@@ -1,0 +1,10 @@
+name: ActionInfoStat
+version: 1.0
+main: me.espoo.is.main
+author: shinkhan
+
+commands:
+  상태:
+    description: ActionInfoStat Plugin
+  정보:
+    description: ActionInfoStat Plugin

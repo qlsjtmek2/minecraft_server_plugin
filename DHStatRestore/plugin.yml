@@ -1,0 +1,79 @@
+name: DHStatRestore
+version: 1.0
+main: me.espoo.statrestore.main
+softdepend: [RpgStatsSystem, Rpgexpsystem]
+author: [shinkhan]
+commands:
+  sr:
+    description: DHStatRestore Plugin
+permissions:
+    전직.전사:
+        description: DHStatRestore Plugin
+    전직.귀검사:
+        description: DHStatRestore Plugin
+    전직.나이트:
+        description: DHStatRestore Plugin
+    전직.버서커:
+        description: DHStatRestore Plugin
+    전직.팔라딘:
+        description: DHStatRestore Plugin
+    전직.루이스:
+        description: DHStatRestore Plugin
+    전직.카이저:
+        description: DHStatRestore Plugin
+    전직.마법사:
+        description: DHStatRestore Plugin
+    전직.라이온:
+        description: DHStatRestore Plugin
+    전직.빙결사:
+        description: DHStatRestore Plugin
+    전직.메이지:
+        description: DHStatRestore Plugin
+    전직.위자드:
+        description: DHStatRestore Plugin
+    전직.루시엘:
+        description: DHStatRestore Plugin
+    전직.마인드:
+        description: DHStatRestore Plugin
+    전직.궁수:
+        description: DHStatRestore Plugin
+    전직.메카닉:
+        description: DHStatRestore Plugin
+    전직.프라임:
+        description: DHStatRestore Plugin
+    전직.레인저:
+        description: DHStatRestore Plugin
+    전직.스니커:
+        description: DHStatRestore Plugin
+    전직.미라나:
+        description: DHStatRestore Plugin
+    전직.트루퍼:
+        description: DHStatRestore Plugin
+    전직.파이터:
+        description: DHStatRestore Plugin
+    전직.카오스:
+        description: DHStatRestore Plugin
+    전직.세인트:
+        description: DHStatRestore Plugin
+    전직.세이버:
+        description: DHStatRestore Plugin
+    전직.가디언:
+        description: DHStatRestore Plugin
+    전직.마스터:
+        description: DHStatRestore Plugin
+    전직.템플러:
+        description: DHStatRestore Plugin
+    전직.도적:
+        description: DHStatRestore Plugin
+    전직.아바돈:
+        description: DHStatRestore Plugin
+    전직.어벤져:
+        description: DHStatRestore Plugin
+    전직.테이커:
+        description: DHStatRestore Plugin
+    전직.블러드:
+        description: DHStatRestore Plugin
+    전직.에스퍼:
+        description: DHStatRestore Plugin
+    전직.사이커:
+        description: DHStatRestore Plugin

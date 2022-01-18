@@ -1,0 +1,10 @@
+name: OnePunchCooking
+version: 1.1
+main: me.espoo.cooking.main
+author: shinkhan
+
+commands:
+  요리:
+    description: OnePunchCooking Plugin
+  요리효과:
+    description: OnePunchCooking Plugin

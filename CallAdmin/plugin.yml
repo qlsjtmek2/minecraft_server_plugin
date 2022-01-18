@@ -1,0 +1,5 @@
+main: com.bpo.calladmin.CallAdminEntry
+version: 5.0
+name: CallAdmin Plugin
+website: http://breakpointsgm.tistory.com/
+author: The Break_Point_ Team

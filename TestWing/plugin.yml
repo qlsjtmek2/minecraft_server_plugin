@@ -1,0 +1,12 @@
+name: TestWing
+main: me.shinkhan.wing.main
+author: shinkhan
+version: 1.0
+
+commands:
+  wing:
+    description: TestWing
+  p:
+    description: TestWing
+  particle:
+    description: TestWing

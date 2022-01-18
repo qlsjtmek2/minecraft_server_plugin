@@ -1,0 +1,9 @@
+name: ActionQuest
+main: me.espoo.quest.main
+version: 1.0
+author: shinkhan
+commands:
+  퀘스트:
+    description: ActionQuest Plugin
+  퀘스트좌표저장:
+    description: ActionQuest Plugin

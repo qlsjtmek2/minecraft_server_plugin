@@ -1,0 +1,9 @@
+name: DHShop
+version: 1.0
+author: shinkhan
+softdepend: []
+main: me.shinkhan.shop.main
+
+commands:
+   상점오픈:
+      description: DHShop command

@@ -1,0 +1,41 @@
+author: Armar
+database: false
+main: me.armar.plugins.autorank.Autorank
+name: AutoRank
+startup: postworld
+depend: [Vault]
+softdepend: [Essentials]
+url: http://wyverncreativeserver.enjin.com/
+version: '1.7'
+commands:
+    진급:
+        description: Autorank
+    계급:
+        description: Autorank
+    등업:
+        description: Autorank
+permissions:
+    autorank.*:
+        description: 모든 커맨드 사용가능
+        default: op
+    autorank.check:
+        description: 체크 명령어 사용가능
+        default: true
+    autorank.checkothers:
+        description: 다른 플레이어 보는거 사용가능
+        default: true
+    autorank.leaderboard:
+        description: 순위 볼 수 있게 설정
+        default: true
+    autorank.exclude:
+        description: autorank 사용자를 제외함
+        default: false
+    autorank.timeexclude:
+        description: 플레이 시간을 안줌
+        default: false
+    autorank.set:
+        description: 플레이어 시간을 설정함
+        default: op
+    autorank.reload:
+        description: 리로딩함
+        default: op

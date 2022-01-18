@@ -1,0 +1,8 @@
+name: OnePunchOption
+version: 1.0
+main: me.espoo.option.main
+author: shinkhan
+
+commands:
+  옵션:
+    description: OnePunchOption Plugin

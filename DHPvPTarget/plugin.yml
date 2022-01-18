@@ -1,0 +1,9 @@
+name: DHPvPTarget
+version: 1.1
+main: me.shinkhan.PvPTarget.main
+softdepend: []
+author: shinkhan
+
+commands:
+  ptcheck:
+    description: DHPvPTarget plugin

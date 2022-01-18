@@ -1,0 +1,5 @@
+name: PluginShotdown
+main: me.espoo.shotdown.main
+version: 1.0
+softdepend: []
+author: shinkhan

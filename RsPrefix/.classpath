@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/서버 버킷폴더/원펀맨 서버/원펀맨/craftbukkit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/서버 버킷폴더/NEW 액션RPG Project/액션RPG/plugins/[유저가이드]DHUserGuide.jar"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/서버 버킷폴더/NEW 액션RPG Project/액션RPG/plugins/[액션서브]ActionOption.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

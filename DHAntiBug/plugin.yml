@@ -1,0 +1,13 @@
+name: DHAntiBug
+main: me.shinkhan.antibug.main
+version: 1.0
+softdepend: [RPG Items]
+commands:
+  allowIP:
+    description: DHAntiBug Plugin
+  아이피허용:
+    description: DHAntiBug Plugin
+  allowopIP:
+    description: DHAntiBug Plugin
+  오피아이피허용:
+    description: DHAntiBug Plugin

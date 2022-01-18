@@ -1,0 +1,291 @@
+package me.espoo.pvp;
+
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
+import me.espoo.rpg.Method;
+import me.espoo.rpg.party.PartyAPI;
+
+public class API {
+	public static void twoStopAPI(String pO, String pT) {
+		boolean is = false;
+		if (API.getEnemyName(pO, 2).equalsIgnoreCase(pT)) {
+			if (PartyAPI.isParty(pO)) {
+				for (String user : PartyAPI.getUser(pO)) {
+					Player p = Bukkit.getPlayerExact(user);
+					if (p != null) {
+						if (p.getWorld().getName().equalsIgnoreCase("world_pvp")) {
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public static void sendCommand(String s) {
+		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), s);
+	}
+	
+	// 0: X, 1: Y, 2: Z, 3: World, 4: Yaw, 5: Pitch
+	public static String LocationToString(Location loc) {
+	    return String.valueOf(loc.getX()) + "," + String.valueOf(loc.getY()) + "," + String.valueOf(loc.getZ()) + "," + loc.getWorld().getName() + "," + loc.getYaw() + "," + loc.getPitch();
+	}
+	
+	public static void quitMatchParty(String party) {
+		if (main.twoList.contains(party)) {
+			main.twoList.remove(party);
+			return;
+		}
+		
+		else if (main.threeList.contains(party)) {
+			main.threeList.remove(party);
+			return;
+		}
+		
+		else if (main.fourList.contains(party)) {
+			main.fourList.remove(party);
+			return;
+		}
+	}
+
+	public static Location StringToLocation(String s) {
+		String[] loc = s.split(",");
+		Location loc2 = new Location(Bukkit.getWorld(loc[3]), Double.parseDouble(loc[0]), Double.parseDouble(loc[1]), Double.parseDouble(loc[2]), Float.parseFloat(loc[4]), Float.parseFloat(loc[5]));
+		return loc2;
+	}
+	
+	public static boolean isPartyUserInWorld(String party, String world) {
+		for (String user : PartyAPI.getUser(party)) {
+			Player p = Method.getOnorOffLine(user);
+			if (!p.getWorld().getName().equalsIgnoreCase(world)) {
+				return false;
+			}
+		} return true;
+	}
+	
+	// 1-1:1, 2-2:2, 3-3:3, 4-4:4, 5-콜로세움
+	public static String getEnemyName(String p, int num) {
+		switch (num) {
+			case 1:
+				if (main.oneName.split(",")[0].equalsIgnoreCase(p)) return main.oneName.split(",")[1];
+				else if (main.oneName.split(",")[1].equalsIgnoreCase(p)) return main.oneName.split(",")[0];
+				else return null;
+				
+			case 2:
+				if (main.twoName.split(",")[0].equalsIgnoreCase(p)) return main.twoName.split(",")[1];
+				else if (main.twoName.split(",")[1].equalsIgnoreCase(p)) return main.twoName.split(",")[0];
+				else return null;
+				
+			case 3:
+				if (main.threeName.split(",")[0].equalsIgnoreCase(p)) return main.threeName.split(",")[1];
+				else if (main.threeName.split(",")[1].equalsIgnoreCase(p)) return main.threeName.split(",")[0];
+				else return null;
+				
+			case 4:
+				if (main.fourName.split(",")[0].equalsIgnoreCase(p)) return main.fourName.split(",")[1];
+				else if (main.fourName.split(",")[1].equalsIgnoreCase(p)) return main.fourName.split(",")[0];
+				else return null;
+				
+			case 5:
+				if (main.coloName.split(",")[0].equalsIgnoreCase(p)) return main.coloName.split(",")[1];
+				else if (main.coloName.split(",")[1].equalsIgnoreCase(p)) return main.coloName.split(",")[0];
+				else return null;
+				
+			default: return null;
+		}
+	}
+	
+	// 1-1:1, 2-2:2, 3-3:3, 4-4:4, 5-콜로세움
+	public static void setChangeName(String p, String p2, int num) {
+		switch (num) {
+			case 1:
+				if (main.oneName.split(",")[0].equalsIgnoreCase(p)) {
+					main.oneName = p2 + "," + main.oneName.split(",")[1]; break;
+				}
+				
+				else if (main.oneName.split(",")[1].equalsIgnoreCase(p)) {
+					main.oneName = main.oneName.split(",")[0] + "," + p2; break;
+				} else break;
+				
+			case 2:
+				if (main.twoName.split(",")[0].equalsIgnoreCase(p)) {
+					main.twoName = p2 + "," + main.twoName.split(",")[1]; break;
+				}
+				
+				else if (main.twoName.split(",")[1].equalsIgnoreCase(p)) {
+					main.twoName = main.twoName.split(",")[0] + "," + p2; break;
+				} else break;
+				
+			case 3:
+				if (main.threeName.split(",")[0].equalsIgnoreCase(p)) {
+					main.threeName = p2 + "," + main.threeName.split(",")[1]; break;
+				}
+				
+				else if (main.threeName.split(",")[1].equalsIgnoreCase(p)) {
+					main.threeName = main.threeName.split(",")[0] + "," + p2; break;
+				} else break;
+				
+			case 4:
+				if (main.fourName.split(",")[0].equalsIgnoreCase(p)) {
+					main.fourName = p2 + "," + main.fourName.split(",")[1]; break;
+				}
+				
+				else if (main.fourName.split(",")[1].equalsIgnoreCase(p)) {
+					main.fourName = main.fourName.split(",")[0] + "," + p2; break;
+				} else break;
+				
+			case 5:
+				if (main.coloName.split(",")[0].equalsIgnoreCase(p)) {
+					main.coloName = p2 + "," + main.coloName.split(",")[1]; break;
+				}
+				
+				else if (main.coloName.split(",")[1].equalsIgnoreCase(p)) {
+					main.coloName = main.coloName.split(",")[0] + "," + p2; break;
+				} else break;
+				
+			default: break;
+		}
+	}
+	
+	public static boolean isOneVSMatch(Player p) {
+		if (main.oneList.contains(p)) return true;
+		return false;
+	}
+	
+	public static boolean isTwoVSMatch(String party) {
+		if (main.twoList.contains(party)) return true;
+		return false;
+	}
+	
+	public static boolean isThreeVSMatch(String party) {
+		if (main.threeList.contains(party)) return true;
+		return false;
+	}
+	
+	public static boolean isFourVSMatch(String party) {
+		if (main.fourList.contains(party)) return true;
+		return false;
+	}
+	
+	public static boolean isColoVSMatch(Player p) {
+		if (main.coloList.contains(p)) return true;
+		return false;
+	}
+	
+	public static boolean isPartyVSMatch(String party) {
+		if (API.isTwoVSMatch(party) || API.isThreeVSMatch(party) || API.isFourVSMatch(party)) return true;
+		return false;
+	}
+	
+	public static boolean isUserVSMatch(Player p) {
+		if (API.isOneVSMatch(p) || API.isColoVSMatch(p)) return true;
+		return false;
+	}
+	
+	public static boolean isOneVSPlaying(String p) {
+		String name = main.oneName;
+		if (name == null) return false;
+		
+		if (name.split(",")[0].equalsIgnoreCase(p) || name.split(",")[1].equalsIgnoreCase(p)) return true;
+		return false;
+	}
+	
+	public static boolean isTwoVSPlaying(String party) {
+		String name = main.twoName;
+		if (name == null) return false;
+		
+		if (name.split(",")[0].equalsIgnoreCase(party) || name.split(",")[1].equalsIgnoreCase(party)) return true;
+		return false;
+	}
+	
+	public static boolean isThreeVSPlaying(String party) {
+		String name = main.threeName;
+		if (name == null) return false;
+		
+		if (name.split(",")[0].equalsIgnoreCase(party) || name.split(",")[1].equalsIgnoreCase(party)) return true;
+		return false;
+	}
+	
+	public static boolean isFourVSPlaying(String party) {
+		String name = main.fourName;
+		if (name == null) return false;
+		
+		if (name.split(",")[0].equalsIgnoreCase(party) || name.split(",")[1].equalsIgnoreCase(party)) return true;
+		return false;
+	}
+	
+	public static boolean isColoVSPlaying(String p) {
+		String name = main.coloName;
+		if (name == null) return false;
+		
+		if (name.split(",")[0].equalsIgnoreCase(p) || name.split(",")[1].equalsIgnoreCase(p)) return true;
+		return false;
+	}
+	
+	public static boolean isUserVSPlaying(String p) {
+		if (API.isOneVSPlaying(p) || API.isColoVSPlaying(p)) return true;
+		return false;
+	}
+	
+	public static boolean isPartyVSPlaying(String party) {
+		if (API.isTwoVSPlaying(party) || API.isThreeVSPlaying(party) || API.isFourVSPlaying(party)) return true;
+		return false;
+	}
+	
+	public static void StopPartyMatch(String party) {
+		if (API.isTwoVSPlaying(party)) {
+			int num = 0;
+			List<String> list = main.twoList;
+			for (String str : list) {
+				if (str.equalsIgnoreCase(party)) main.twoList.remove(num);
+				else num++;
+			}
+		}
+		
+		else if (API.isThreeVSPlaying(party)) {
+			int num = 0;
+			List<String> list = main.threeList;
+			for (String str : list) {
+				if (str.equalsIgnoreCase(party)) main.threeList.remove(num);
+				else num++;
+			}
+		}
+		
+		else if (API.isFourVSPlaying(party)) {
+			int num = 0;
+			List<String> list = main.fourList;
+			for (String str : list) {
+				if (str.equalsIgnoreCase(party)) main.fourList.remove(num);
+				else num++;
+			}
+		}
+	}
+	
+	public static int getPvPGotTime() {
+		return Config.getInt("대련 설정.무적 시간 (초)");
+	}
+	
+	public static int getPvPTime() {
+		return Config.getInt("대련 설정.대련 시간 (초)");
+	}
+	
+	public static int getPvPFinishTime() {
+		return Config.getInt("대련 설정.마무리 시간 (초)");
+	}
+	
+	public static int getColoGotTime() {
+		return Config.getInt("콜로세움 설정.무적 시간 (초)");
+	}
+	
+	public static int getColoTime() {
+		return Config.getInt("콜로세움 설정.대련 시간 (초)");
+	}
+	
+	public static int getColoFinishTime() {
+		return Config.getInt("콜로세움 설정.마무리 시간 (초)");
+	}
+}

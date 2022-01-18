@@ -1,0 +1,175 @@
+name: ActionRPG
+version: 2.4
+main: me.espoo.rpg2.main
+commands:
+  dropscript:
+    description: ActionRPG server
+  베드락확인:
+    description: ActionRPG server
+  언데드확인:
+    description: ActionRPG server
+  위더확인:
+    description: ActionRPG server
+  부두확인:
+    description: ActionRPG server
+  스켈레톤확인:
+    description: ActionRPG server
+  전직안정:
+    description: ActionRPG server
+  머리:
+    description: ActionRPG server
+  nbth:
+    description: ActionRPG server
+  물건구매:
+    description: ActionRPG server
+  in:
+    description: ActionRPG server
+  gp:
+    description: ActionRPG server
+  표지판:
+    description: ActionRPG server
+  오:
+    description: ActionRPG server
+  AR:
+    description: ActionRPG server
+  ARPG:
+    description: ActionRPG server
+  액알:
+    description: ActionRPG server
+  액션알피지:
+    description: ActionRPG server
+  확성기:
+    description: ActionRPG server
+  이벤터:
+    description: ActionRPG server
+  튜토리얼마침:
+    description: ActionRPG server
+  전직실행GUI:
+    description: ActionRPG server
+  해독알고리즘:
+    description: ActionRPG server
+  포션알고리즘1:
+    description: ActionRPG server
+  포션알고리즘2:
+    description: ActionRPG server
+  포션알고리즘3:
+    description: ActionRPG server
+  포션알고리즘4:
+    description: ActionRPG server
+  포션알고리즘5:
+    description: ActionRPG server
+  마나포션알고리즘1:
+    description: ActionRPG server
+  마나포션알고리즘2:
+    description: ActionRPG server
+  마나포션알고리즘3:
+    description: ActionRPG server
+  마나포션알고리즘4:
+    description: ActionRPG server
+  마나포션알고리즘5:
+    description: ActionRPG server
+  색깔을변경하자:
+    description: ActionRPG server
+  색깔을복구하자:
+    description: ActionRPG server
+  스텟1:
+    description: ActionRPG server
+  스텟10:
+    description: ActionRPG server
+  스텟40:
+    description: ActionRPG server
+  스텟60:
+    description: ActionRPG server
+  박스미쳐버린언데드:
+    description: ActionRPG server
+  박스베드락:
+    description: ActionRPG server
+  박스각성한스켈레톤:
+    description: ActionRPG server
+  박스진화한위더:
+    description: ActionRPG server
+  박스시험포기:
+    description: ActionRPG server
+  박스랜덤강화주문서:
+    description: ActionRPG server
+  박스체력포션:
+    description: ActionRPG server
+  박스마나포션:
+    description: ActionRPG server
+  박스부두술사의생명광석:
+    description: ActionRPG server
+  박스수박:
+    description: ActionRPG server
+  박스랜덤룬:
+    description: ActionRPG server
+  1단계골드큐브:
+    description: ActionRPG server
+  2단계골드큐브:
+    description: ActionRPG server
+  3단계골드큐브:
+    description: ActionRPG server
+  4단계골드큐브:
+    description: ActionRPG server
+  5단계골드큐브:
+    description: ActionRPG server
+  6단계골드큐브:
+    description: ActionRPG server
+  7단계골드큐브:
+    description: ActionRPG server
+  8단계골드큐브:
+    description: ActionRPG server
+  9단계골드큐브:
+    description: ActionRPG server
+  10단계골드큐브:
+    description: ActionRPG server
+  11단계골드큐브:
+    description: ActionRPG server
+  12단계골드큐브:
+    description: ActionRPG server
+  13단계골드큐브:
+    description: ActionRPG server
+  14단계골드큐브:
+    description: ActionRPG server
+  15단계골드큐브:
+    description: ActionRPG server
+  LvUP:
+    description: ActionRPG server
+  복권실행:
+    description: ActionRPG server
+  무기:
+    description: ActionRPG server
+  카드팩:
+    description: ActionRPG server
+  야간투시:
+    description: ActionRPG server
+  강화하자:
+    description: ActionRPG server
+  전직하자:
+    description: ActionRPG server
+  이동던전:
+    description: ActionRPG server
+  보스보상:
+    description: ActionRPG server
+  만렙보상:
+    description: ActionRPG server
+  부두술사실행:
+    description: ActionRPG server
+  전직초기화:
+    description: ActionRPG server
+  보상지급:
+    description: ActionRPG server
+  물포탈:
+    description: ActionRPG server
+  자살:
+    description: ActionRPG server
+permissions:
+    [전사]:
+        description: ActionRPG server
+    [궁수]:
+        description: ActionRPG server
+    [도적]:
+        description: ActionRPG server
+    [마법사]:
+        description: ActionRPG server
+    [파이터]:
+        description: ActionRPG server

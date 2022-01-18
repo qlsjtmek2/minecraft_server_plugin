@@ -1,0 +1,10 @@
+name: DHPlantPotal
+version: 1.0
+main: me.shinkhan.plantpotal.main
+author: shinkhan
+
+commands:
+  유저포탈:
+    description: DHPlantPotal Plugin
+  유저포탈추가:
+    description: DHPlantPotal Plugin

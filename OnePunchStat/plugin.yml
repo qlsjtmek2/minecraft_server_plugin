@@ -1,0 +1,11 @@
+name: OnePunchStat
+version: 1.0
+main: me.espoo.punchstat.main
+softdepend: [Vault]
+author: shinkhan
+
+commands:
+  스텟:
+    description: 스텟 GUI 창을 엽니다.
+  스텟a:
+    description: 스텟 

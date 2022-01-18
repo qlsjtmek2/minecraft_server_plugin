@@ -1,0 +1,10 @@
+name: DHQuiz
+version: 1.1
+main: me.shinkhan.Quiz.main
+softdepend: [Vault]
+author: [shinkhan, __Vector]
+commands:
+  Quiz:
+    description: DHQuiz Plugin
+  퀴즈:
+    description: DHQuiz Plugin

@@ -1,0 +1,6 @@
+name: RpgFriends
+main: com.vartala.soulofw0lf.rpgfriends.RpgFriends
+version: 1.0
+commands:
+    친구:
+        description: Base friend command

@@ -1,0 +1,8 @@
+name: EchoPetManager
+main: me.espoo.pet.main
+author: shinkhan
+version: 1.0
+
+commands:
+  펫:
+    description: EchoPetManager server

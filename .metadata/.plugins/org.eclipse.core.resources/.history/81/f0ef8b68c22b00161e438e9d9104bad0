@@ -1,0 +1,450 @@
+package me.espoo.pvp;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import me.confuser.barapi.BarAPI;
+import me.espoo.rpg.Method;
+import me.espoo.rpg.party.PartyAPI;
+
+public class main extends JavaPlugin implements Listener {
+    static final Map <String, Integer> Timer = new HashMap<>();
+	public static HashMap<String, Integer> PartyCheck = new HashMap<String, Integer>();
+	public static HashMap<Player, Integer> BossBarTimer = new HashMap<Player, Integer>();
+	public static List<Player> oneList = new ArrayList<Player>();
+	public static List<String> twoList = new ArrayList<String>();
+	public static List<String> threeList = new ArrayList<String>();
+	public static List<String> fourList = new ArrayList<String>();
+	public static List<Player> coloList = new ArrayList<Player>();
+	public static String oneName = null;
+	public static String twoName = null;
+	public static String threeName = null;
+	public static String fourName = null;
+	public static String coloName = null;
+	public static boolean oneVS = false;
+	public static boolean twoVS = false;
+	public static boolean threeVS = false;
+	public static boolean fourVS = false;
+	public static boolean coloVS = false;
+	public static byte oneType = -1;
+	public static byte twoType = -1;
+	public static byte threeType = -1;
+	public static byte fourType = -1;
+	public static byte coloType = -1;
+	
+	public void onEnable()
+	{
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			public void run() {
+				BossBarTimer();
+				OnevsOneTimer();
+				TwovsTwoTimer();
+			}
+		}, 20L, 20L);
+		
+		File f = new File("plugins/OnePunchPvP/Config.yml");
+		File folder = new File("plugins/OnePunchPvP");
+		YamlConfiguration c = YamlConfiguration.loadConfiguration(f);
+		if (!f.exists()) Config.CreateConfig(f, folder, c);
+		
+        GUIMessage.setGUIMessage();
+		getCommand("대련").setExecutor(new mainCommand(this));
+		getCommand("대전").setExecutor(new mainCommand(this));
+		getCommand("PVP").setExecutor(new mainCommand(this));
+		getCommand("대련위치").setExecutor(new mainCommand(this));
+		getCommand("대전위치").setExecutor(new mainCommand(this));
+		getCommand("PVP위치").setExecutor(new mainCommand(this));
+		getServer().getPluginManager().registerEvents(new mainEvent(this), this);
+		PluginDescriptionFile pdFile = getDescription();
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "■" + ChatColor.GRAY + "■ " + ChatColor.WHITE + pdFile.getName() + ChatColor.YELLOW + " 버전 " + ChatColor.WHITE + pdFile.getVersion());
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "■" + ChatColor.RED + "■ " + ChatColor.GREEN + "활성화가 완료되었습니다.");
+	}
+	
+	public void onDisable()
+	{
+		PluginDescriptionFile pdFile = getDescription();
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "■" + ChatColor.GRAY + "■ " + ChatColor.WHITE + pdFile.getName() + ChatColor.YELLOW + " 버전 " + ChatColor.WHITE + pdFile.getVersion());
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "■" + ChatColor.RED + "■ " + ChatColor.RED + "비활성화가 완료되었습니다.");
+	}
+
+	public static void BossBarTimer()
+	{
+		for (Player p : oneList) {
+			int i = 0;
+			if (main.BossBarTimer.get(p) != null) i = main.BossBarTimer.get(p);
+			i++; main.BossBarTimer.put(p, i);
+			
+			String str = ".";
+			if (i % 3 == 1) str = str + ".";
+			if (i % 3 == 2) str = str + "..";
+			BarAPI.setMessage(p, "§e[ " + i + "초 ]  §61:1 §c대련 §6매칭 대기중" + str);
+		}
+		
+		for (String party : twoList) {
+			if (PartyAPI.isParty(party)) {
+				for (String user : PartyAPI.getUser(party)) {
+					Player p = Method.getOnorOffLine(user);
+					if (p != null) {
+						int i = 0;
+						if (main.BossBarTimer.get(p) != null) i = main.BossBarTimer.get(p);
+						i++; main.BossBarTimer.put(p, i);
+						
+						String str = ".";
+						if (i % 3 == 1) str = str + ".";
+						if (i % 3 == 2) str = str + "..";
+						BarAPI.setMessage(p, "§e[ " + i + "초 ]  §62:2 §c대련 §6매칭 대기중" + str );
+					}
+				}
+			}
+		}
+		
+		for (String party : threeList) {
+			if (PartyAPI.isParty(party)) {
+				for (String user : PartyAPI.getUser(party)) {
+					Player p = Method.getOnorOffLine(user);
+					if (p != null) {
+						int i = 0;
+						if (main.BossBarTimer.get(p) != null) i = main.BossBarTimer.get(p);
+						i++; main.BossBarTimer.put(p, i);
+						
+						String str = ".";
+						if (i % 3 == 1) str = str + ".";
+						if (i % 3 == 2) str = str + "..";
+						BarAPI.setMessage(p, "§e[ " + i + "초 ]  §63:3 §c대련 §6매칭 대기중" + str);
+					}
+				}
+			}
+		}
+		
+		for (String party : fourList) {
+			if (PartyAPI.isParty(party)) {
+				for (String user : PartyAPI.getUser(party)) {
+					Player p = Method.getOnorOffLine(user);
+					if (p != null) {
+						int i = 0;
+						if (main.BossBarTimer.get(p) != null) i = main.BossBarTimer.get(p);
+						i++; main.BossBarTimer.put(p, i);
+						
+						String str = ".";
+						if (i % 3 == 1) str = str + ".";
+						if (i % 3 == 2) str = str + "..";
+						BarAPI.setMessage(p, "§e[ " + i + "초 ]  §64:4 §c대련 §6매칭 대기중" + str);
+					}
+				}
+			}
+		}
+		
+		for (Player p : coloList) {
+			int i = 0;
+			if (main.BossBarTimer.get(p) != null) i = main.BossBarTimer.get(p);
+			i++; main.BossBarTimer.put(p, i);
+			
+			String str = ".";
+			if (i % 3 == 1) str = str + ".";
+			if (i % 3 == 2) str = str + "..";
+			BarAPI.setMessage(p, "§e[ " + i + "초 ]  §6콜로세움 §c대련 §6매칭 대기중" + str);
+		}
+	}
+	
+	public static void OnevsOneTimer()
+	{
+		if (oneList.size() >= 2) {
+			if (!oneVS) {
+				Player p1 = main.oneList.get(0);
+				Player p2 = main.oneList.get(1);
+				oneList.remove(0);
+				oneList.remove(0);
+				BarAPI.removeBar(p1);
+				BarAPI.removeBar(p2);
+				main.BossBarTimer.remove(p1);
+				main.BossBarTimer.remove(p2);
+				p1.teleport(Position.getOneRed());
+				p2.teleport(Position.getOneBlue());
+				p1.getLocation().getChunk().load();
+				p2.getLocation().getChunk().load();
+				p1.sendMessage("§c" + p2.getName() + " §6님과의 대련이 곧 시작됩니다.");
+				p2.sendMessage("§c" + p1.getName() + " §6님과의 대련이 곧 시작됩니다.");
+				if (me.espoo.option.PlayerYml.getInfoBoolean(p1, "효과음")) p1.playSound(p1.getLocation(), Sound.SHOOT_ARROW, 2.0F, 1.5F);
+				if (me.espoo.option.PlayerYml.getInfoBoolean(p2, "효과음")) p2.playSound(p2.getLocation(), Sound.SHOOT_ARROW, 2.0F, 1.5F);
+				
+				oneVS = true;
+				oneType = 1;
+				oneName = p1.getName() + "," + p2.getName();
+				
+				Timer.put("1. Don't Move", new BukkitRunnable()
+				{
+					int num = API.getPvPGotTime() + 1;
+					public void run()
+					{
+						num--;
+						
+						if (!oneVS) {
+							oneType = -1;
+							oneName = null;
+							Integer id = main.Timer.remove("1. Don't Move");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						}
+						
+						if (num <= 0) {
+							p1.sendMessage("§6대련이 시작되었습니다!");
+							p2.sendMessage("§6대련이 시작되었습니다!");
+							if (me.espoo.option.PlayerYml.getInfoBoolean(p1, "효과음")) p1.playSound(p1.getLocation(), Sound.ORB_PICKUP, 2.0F, 1.25F);
+							if (me.espoo.option.PlayerYml.getInfoBoolean(p2, "효과음")) p2.playSound(p2.getLocation(), Sound.ORB_PICKUP, 2.0F, 1.25F);
+							
+							oneType = 2;
+							Integer id = main.Timer.remove("1. Don't Move");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						} else {
+							p1.sendMessage("§6대련 시작까지 §c" + num + " §6초 남았습니다.");
+							p2.sendMessage("§6대련 시작까지 §c" + num + " §6초 남았습니다.");
+							if (me.espoo.option.PlayerYml.getInfoBoolean(p1, "효과음")) p1.playSound(p1.getLocation(), Sound.CLICK, 2.0F, 1.2F);
+							if (me.espoo.option.PlayerYml.getInfoBoolean(p2, "효과음")) p2.playSound(p2.getLocation(), Sound.CLICK, 2.0F, 1.2F);
+						}
+					}
+				}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), 20L, 20L).getTaskId());
+				
+				int time = (API.getPvPGotTime() + 1) * 20; time += 20;
+				
+				Timer.put("1. PvP Start", new BukkitRunnable()
+				{
+					int num = API.getPvPTime() + 1;
+					public void run()
+					{
+						num--;
+						
+						if (!oneVS) {
+							oneType = -1;
+							oneName = null;
+							Integer id = main.Timer.remove("1. PvP Start");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						}
+						
+						if (num == 30) {
+							p1.sendMessage("§6현재 대련 시간이 §c30 §6초 남았습니다.");
+							p2.sendMessage("§6현재 대련 시간이 §c30 §6초 남았습니다.");
+						}
+
+						else if (num == 20) {
+							p1.sendMessage("§6현재 대련 시간이 §c20 §6초 남았습니다.");
+							p2.sendMessage("§6현재 대련 시간이 §c20 §6초 남았습니다.");
+						}
+
+						else if (num == 10) {
+							p1.sendMessage("§6현재 대련 시간이 §c10 §6초 남았습니다.");
+							p2.sendMessage("§6현재 대련 시간이 §c10 §6초 남았습니다.");
+						}
+
+						else if (num == 5) {
+							p1.sendMessage("§6현재 대련 시간이 §c5 §6초 남았습니다.");
+							p2.sendMessage("§6현재 대련 시간이 §c5 §6초 남았습니다.");
+						}
+						
+						else if (num <= 0) {
+							p1.sendMessage("");
+							p1.sendMessage("§f==========================================================");
+							p1.sendMessage("");
+							p1.sendMessage("                                              §6대련이 종료되었습니다!");
+							p1.sendMessage("");
+							p1.sendMessage("§f==========================================================");
+							p1.sendMessage("");
+							p2.sendMessage("");
+							p2.sendMessage("§f==========================================================");
+							p2.sendMessage("");
+							p2.sendMessage("                                              §6대련이 종료되었습니다!");
+							p2.sendMessage("");
+							p2.sendMessage("§f==========================================================");
+							p2.sendMessage("");
+							
+							oneType = 3;
+							Integer id = main.Timer.remove("1. PvP Start");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						}
+					}
+				}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), time, 20L).getTaskId());
+				
+				time += (API.getPvPTime() + 1) * 20;
+				
+				Timer.put("1. PvP Finish", new BukkitRunnable()
+				{
+					int num = API.getPvPFinishTime() + 1;
+					public void run()
+					{
+						num--;
+						
+						if (!oneVS) {
+							oneType = -1;
+							oneName = null;
+							Integer id = main.Timer.remove("1. PvP Finish");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						}
+						
+						if (num <= 0) {
+							p1.sendMessage("§6스폰으로 이동되었습니다.");
+							p2.sendMessage("§6스폰으로 이동되었습니다.");
+							oneType = -1;
+							oneVS = false;
+							oneName = null;
+							p1.chat("/spawn");
+							p2.chat("/spawn");
+							API.sendCommand("heal " + p1.getName());
+							API.sendCommand("heal " + p2.getName());
+							
+							Integer id = main.Timer.remove("1. PvP Finish");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						} else {
+							p1.sendMessage("§c" + num + " §6초 뒤 스폰으로 이동합니다.");
+							p2.sendMessage("§c" + num + " §6초 뒤 스폰으로 이동합니다.");
+						}
+					}
+				}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), time, 20L).getTaskId());
+			}
+		}
+	}
+	
+	public static void TwovsTwoTimer()
+	{
+		if (twoList.size() >= 2) {
+			if (!twoVS) {
+				int i = 0;
+				String pO = twoList.get(0);
+				String pT = twoList.get(1);
+				twoList.remove(0);
+				twoList.remove(0);
+				twoVS = true;
+				twoType = 1;
+				twoName = pO + "," + pT;
+				
+				if (PartyAPI.isParty(pO) && PartyAPI.isParty(pT)) {
+					for (String user : PartyAPI.getUser(pO)) {
+						Player p = Bukkit.getPlayerExact(user);
+						
+						if (p != null) {
+							BarAPI.removeBar(p);
+							main.BossBarTimer.remove(p);
+							if (i == 0) p.teleport(Position.getTwoRed1());
+							else if (i == 1) p.teleport(Position.getTwoRed2());
+							i++;
+							p.getLocation().getChunk().load();
+							p.sendMessage("§c" + pT + " §6님의 파티와의 대련이 곧 시작됩니다.");
+							if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.SHOOT_ARROW, 2.0F, 1.5F);
+							
+							Timer.put("2. Don't Move " + user + "", new BukkitRunnable()
+							{
+								int num = API.getPvPGotTime() + 1;
+								public void run()
+								{
+									num--;
+									
+									if (!twoVS) {
+										twoType = -1;
+										twoName = null;
+										Integer id = main.Timer.remove("1. Don't Move " + user + "");
+										if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+										return;
+									}
+									
+									if (num <= 0) {
+										p.sendMessage("§6대련이 시작되었습니다!");
+										if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ORB_PICKUP, 2.0F, 1.25F);
+										
+										twoType = 2;
+										Integer id = main.Timer.remove("1. Don't Move " + user + "");
+										if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+										return;
+									} else {
+										p.sendMessage("§6대련 시작까지 §c" + num + " §6초 남았습니다.");
+										if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.CLICK, 2.0F, 1.2F);
+									}
+								}
+							}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), 20L, 20L).getTaskId());
+							
+							Timer.put("1. PvP Start", new BukkitRunnable()
+							{
+								int num = API.getPvPTime() + 1;
+								public void run()
+								{
+									num--;
+									
+									if (!oneVS) {
+										oneType = -1;
+										oneName = null;
+										Integer id = main.Timer.remove("1. PvP Start");
+										if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+										return;
+									}
+									
+									if (num == 30) {
+										p1.sendMessage("§6현재 대련 시간이 §c30 §6초 남았습니다.");
+										p2.sendMessage("§6현재 대련 시간이 §c30 §6초 남았습니다.");
+									}
+
+									else if (num == 20) {
+										p1.sendMessage("§6현재 대련 시간이 §c20 §6초 남았습니다.");
+										p2.sendMessage("§6현재 대련 시간이 §c20 §6초 남았습니다.");
+									}
+
+									else if (num == 10) {
+										p1.sendMessage("§6현재 대련 시간이 §c10 §6초 남았습니다.");
+										p2.sendMessage("§6현재 대련 시간이 §c10 §6초 남았습니다.");
+									}
+
+									else if (num == 5) {
+										p1.sendMessage("§6현재 대련 시간이 §c5 §6초 남았습니다.");
+										p2.sendMessage("§6현재 대련 시간이 §c5 §6초 남았습니다.");
+									}
+									
+									else if (num <= 0) {
+										p1.sendMessage("");
+										p1.sendMessage("§f==========================================================");
+										p1.sendMessage("");
+										p1.sendMessage("                                              §6대련이 종료되었습니다!");
+										p1.sendMessage("");
+										p1.sendMessage("§f==========================================================");
+										p1.sendMessage("");
+										p2.sendMessage("");
+										p2.sendMessage("§f==========================================================");
+										p2.sendMessage("");
+										p2.sendMessage("                                              §6대련이 종료되었습니다!");
+										p2.sendMessage("");
+										p2.sendMessage("§f==========================================================");
+										p2.sendMessage("");
+										
+										oneType = 3;
+										Integer id = main.Timer.remove("1. PvP Start");
+										if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+										return;
+									}
+								}
+							}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), time, 20L).getTaskId());
+							
+							
+							
+							
+						}
+					}
+				}
+				
+				i = 0;
+			}
+		}
+	}
+}

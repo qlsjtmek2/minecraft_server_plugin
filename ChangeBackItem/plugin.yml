@@ -1,0 +1,29 @@
+name: ChangeBackItem
+main: com.onikur.changebackitem.ChangeBackItem
+version: 1.6
+author: Onikur
+description: Your unique block item will never lose when place on the ground
+
+commands:
+  changebackitem:
+    description: "ChangeBackItem command."
+    usage: /<command>
+    permission: changebackitem.plugininfo
+    permission-message: "You don't have <permission>"
+      
+permissions:
+  changebackitem.*:
+      description: Gives access to all ChangeBackItem commands
+      children:
+          changebackitem.plugininfo: true
+          changebackitem.help: true
+          changebackitem.reload: true
+  changebackitem.plugininfo:
+      description: Allows you to see this plugin info
+      default: true
+  changebackitem.help:
+      description: Show the help
+      default: true
+  changebackitem.reload:
+      description: Reload this plugin
+      default: false

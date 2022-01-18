@@ -1,0 +1,651 @@
+package me.espoo.pvp;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import com.nisovin.magicspells.events.SpellCastEvent;
+
+import me.confuser.barapi.BarAPI;
+import me.espoo.rpg.Method;
+import me.espoo.rpg.exp.ExpAPI;
+import me.espoo.rpg.party.PartyAPI;
+
+public class mainEvent extends JavaPlugin implements Listener {
+	main M;
+	
+	public mainEvent(main main)
+	{
+		this.M = main;
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onPlayerCommnadPreprocess(PlayerCommandPreprocessEvent e)
+	{
+		Player p = e.getPlayer();
+		if (API.isUserVSPlaying(p.getName())) {
+			e.setCancelled(true);
+			return;
+		}
+		
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isPartyVSPlaying(party)) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onGodEvent(PlayerMoveEvent e) {
+		Player p = e.getPlayer();
+		if (API.isOneVSPlaying(p.getName()) && main.oneType == 1) {
+			p.teleport(e.getFrom());
+			p.setSneaking(false);
+			return;
+		}
+		
+		else if (API.isColoVSPlaying(p.getName()) && main.coloType == 1) {
+			p.teleport(e.getFrom());
+			p.setSneaking(false);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1) {
+				p.teleport(e.getFrom());
+				p.setSneaking(false);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1) {
+				p.teleport(e.getFrom());
+				p.setSneaking(false);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1) {
+				p.teleport(e.getFrom());
+				p.setSneaking(false);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onGodEvent(PlayerToggleSneakEvent e) {
+		Player p = e.getPlayer();
+		if (API.isOneVSPlaying(p.getName()) && main.oneType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+		
+		else if (API.isColoVSPlaying(p.getName()) && main.coloType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onGodEvent(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+		if (API.isOneVSPlaying(p.getName()) && main.oneType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+		
+		else if (API.isColoVSPlaying(p.getName()) && main.coloType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onGodEvent(PlayerDropItemEvent e) {
+		Player p = e.getPlayer();
+		if (API.isOneVSPlaying(p.getName()) && main.oneType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+		
+		else if (API.isColoVSPlaying(p.getName()) && main.coloType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onSpellCast(SpellCastEvent e) {
+		Player p = e.getCaster();
+		if (API.isOneVSPlaying(p.getName()) && main.oneType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+		
+		else if (API.isColoVSPlaying(p.getName()) && main.coloType == 1) {
+			e.setCancelled(true);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(p);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void onDamage(EntityDamageByEntityEvent e) {
+		if (!(e.getDamager() instanceof Player)) return;
+	    Player damager = (Player) e.getDamager();
+	    if (API.isOneVSPlaying(damager.getName()) && main.oneType == 1 || API.isOneVSPlaying(damager.getName()) && main.oneType == 3) {
+	    	e.setCancelled(true);
+	    	return;
+		}
+		
+		else if (API.isColoVSPlaying(damager.getName()) && main.coloType == 1 || API.isColoVSPlaying(damager.getName()) && main.coloType == 3) {
+			e.setCancelled(true);
+			return;
+		}
+
+		String party = PartyAPI.getJoinParty(damager);
+		if (party != null) {
+			if (API.isTwoVSPlaying(party) && main.twoType == 1 || API.isTwoVSPlaying(party) && main.twoType == 3) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isThreeVSPlaying(party) && main.threeType == 1 || API.isThreeVSPlaying(party) && main.threeType == 3) {
+				e.setCancelled(true);
+				return;
+			}
+
+			else if (API.isFourVSPlaying(party) && main.fourType == 1 || API.isFourVSPlaying(party) && main.fourType == 3) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		Player p = e.getPlayer();
+		
+		if (p.getWorld().getName().equalsIgnoreCase("world_pvp")) {
+			p.chat("/spawn");
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void onPlayerQuit(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		String party = PartyAPI.getJoinParty(p);
+		
+		if (party != null) {
+			if (API.isPartyVSMatch(party)) {
+				API.quitMatchParty(party);
+				for (String user : PartyAPI.getUser(party)) {
+					Player pl = Method.getOnorOffLine(user);
+					if (pl != null) main.BossBarTimer.remove(pl);
+					pl.sendMessage("§c" + p.getName() + " §6님이 퇴장하여서 매칭이 자동으로 §c취소 §6되었습니다.");
+				}
+			}
+		} else {
+			if (API.isOneVSMatch(p)) {
+				main.oneList.remove(p);
+				main.BossBarTimer.remove(p);
+			}
+			
+			else if (API.isColoVSMatch(p)) {
+				main.coloList.remove(p);
+				main.BossBarTimer.remove(p);
+			}
+			
+			else if (API.isOneVSPlaying(p.getName())) {
+				String name = API.getEnemyName(p.getName(), 1);
+				if (name != null) {
+					final Player pl = Method.getOnorOffLine(name);
+					pl.sendMessage("§6대련중인 상대 플레이어가 퇴장하여 §c승리§6하셨습니다.");
+					
+					if (main.Timer.get("1. PvP Finish") != null) {
+						Integer id = main.Timer.remove("1. PvP Finish");
+						if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+						return;
+					}
+					
+					main.Timer.put("1. PvP Finish", new BukkitRunnable()
+					{
+						int num = API.getPvPFinishTime() + 1;
+						public void run()
+						{
+							num--;
+							
+							if (!main.oneVS) {
+								main.oneType = -1;
+								main.oneName = null;
+								Integer id = main.Timer.remove("1. PvP Finish");
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							}
+							
+							if (num <= 0) {
+								pl.sendMessage("§6스폰으로 이동되었습니다.");
+								main.oneType = -1;
+								main.oneVS = false;
+								main.oneName = null;
+								pl.chat("/spawn");
+								
+								Integer id = main.Timer.remove("1. PvP Finish");
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							} else {
+								pl.sendMessage("§c" + num + " §6초 뒤 스폰으로 이동합니다.");
+							}
+						}
+					}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), 20L, 20L).getTaskId());
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerDeath(PlayerDeathEvent e) {
+		Player p = e.getEntity();
+		String party = PartyAPI.getJoinParty(p);
+		
+		if (API.isOneVSPlaying(p.getName())) {
+			String name = API.getEnemyName(p.getName(), 1);
+			if (name != null) {
+				final Player pl = Method.getOnorOffLine(name);
+				pl.sendMessage("§6대련중 §c" + p.getName() + " §6님이 §c" + name + " §6님에게 사망하셨습니다.");
+				pl.sendMessage("");
+				pl.sendMessage("§f==========================================================");
+				pl.sendMessage("");
+				pl.sendMessage("                                              §6대련이 종료되었습니다!");
+				pl.sendMessage("");
+				pl.sendMessage("§f==========================================================");
+				pl.sendMessage("");
+				
+				p.sendMessage("§6대련중 §c" + p.getName() + " §6님이 §c" + name + " §6님에게 사망하셨습니다.");
+				p.sendMessage("");
+				p.sendMessage("§f==========================================================");
+				p.sendMessage("");
+				p.sendMessage("                                              §6대련이 종료되었습니다!");
+				p.sendMessage("");
+				p.sendMessage("§f==========================================================");
+				p.sendMessage("");
+				
+				main.Timer.put("1. PvP Finish", new BukkitRunnable()
+				{
+					int num = API.getPvPFinishTime() + 1;
+					public void run()
+					{
+						num--;
+						
+						if (!main.oneVS) {
+							main.oneType = -1;
+							main.oneName = null;
+							Integer id = main.Timer.remove("1. PvP Finish");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						}
+						
+						if (num <= 0) {
+							pl.sendMessage("§6스폰으로 이동되었습니다.");
+							main.oneType = -1;
+							main.oneVS = false;
+							main.oneName = null;
+							pl.chat("/spawn");
+							API.sendCommand("heal " + pl.getName());
+							
+							Integer id = main.Timer.remove("1. PvP Finish");
+							if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+							return;
+						} else {
+							pl.sendMessage("§c" + num + " §6초 뒤 스폰으로 이동합니다.");
+						}
+					}
+				}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchPvP"), 20L, 20L).getTaskId());
+				return;
+			}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.LOWEST)
+	public void onInventoryClose(InventoryCloseEvent e) {
+		HumanEntity h = e.getPlayer();
+		Player p = Bukkit.getPlayerExact(h.getName());
+		
+		if (e.getInventory().getName().equalsIgnoreCase("파티 장이 2:2 대련을 진행하자고 합니다.") ||
+			e.getInventory().getName().equalsIgnoreCase("파티 장이 3:3 대련을 진행하자고 합니다.") ||
+			e.getInventory().getName().equalsIgnoreCase("파티 장이 4:4 대련을 진행하자고 합니다.")) {
+			String party = PartyAPI.getJoinParty(p);
+			
+			if (p.getName().equalsIgnoreCase(PartyAPI.getManager(party))) return;
+			if (main.PartyCheck.get(party) != null) {
+				if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 2.0F, 1.5F);
+				p.sendMessage("§c인벤토리 창을 닫아 자동으로 대련 매칭을 거부하였습니다.");
+				main.PartyCheck.remove(party);
+				
+				for (String user : PartyAPI.getUser(party)) {
+					if (user.equalsIgnoreCase(p.getName())) continue;
+					
+					Player pl = Method.getOnorOffLine(user);
+					pl.sendMessage("§c" + p.getName() + " 님이 매칭을 거부하여 대련을 진행하지 않습니다.");
+					pl.closeInventory();
+					if (me.espoo.option.PlayerYml.getInfoBoolean(pl, "효과음")) pl.playSound(pl.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+				}
+			}
+		}
+	}
+
+	@EventHandler
+    public void onMainClick(InventoryClickEvent e) {
+     	if (e.getCurrentItem() == null) return;
+     	if (e.getInventory().getName().equalsIgnoreCase("파티 장이 2:2 대련을 진행하자고 합니다.")) {
+     		e.setCancelled(true);
+     		
+     		HumanEntity h = e.getView().getPlayer();
+    		Player p = Bukkit.getPlayerExact(h.getName());
+    		
+    		if (e.getCurrentItem().hasItemMeta()) {
+    			if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
+    				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§f예, 대련에 참가하겠습니다.")) {
+    					String party = PartyAPI.getJoinParty(p);
+    					int num = main.PartyCheck.get(party) + 1;
+    					main.PartyCheck.put(party, num);
+    					
+    					if (num == PartyAPI.getUserInteger(party)) {
+    						if (main.PartyCheck.get(party) != null) main.PartyCheck.remove(party);
+    						main.twoList.add(party);
+    						
+    						for (String user : PartyAPI.getUser(party)) {
+        						Player pl = Method.getOnorOffLine(user);
+        						pl.closeInventory();
+        						pl.sendMessage("§6모두가 대련 매칭을 수락하여 매칭을 §c진행§6합니다.");
+            					pl.sendMessage("§6매치가 잡히면 §c강제로 텔레포트 §6됩니다. 당분간 아무 작업을 수행하지 말아주시기 바랍니다.");
+            					if (me.espoo.option.PlayerYml.getInfoBoolean(pl, "효과음")) pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+        					}
+    					} else {
+    						p.sendMessage("§6성공적으로 대련 매칭을 §c수락§6하셨습니다.");
+    						p.closeInventory();
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+    					}
+    				}
+    				
+    				else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§f아니요, 대련에 참가하지 않겠습니다.")) {
+    					String party = PartyAPI.getJoinParty(p);
+        				if (main.PartyCheck.get(party) != null) main.PartyCheck.remove(party);
+    					
+    					for (String user : PartyAPI.getUser(party)) {
+    						if (user.equalsIgnoreCase(p.getName())) continue;
+    						
+    						Player pl = Method.getOnorOffLine(user);
+    						pl.closeInventory();
+    						pl.sendMessage("§c" + p.getName() + " 님이 매칭을 거부하여 대련을 진행하지 않습니다.");
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(pl, "효과음")) pl.playSound(pl.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    					}
+    					
+        				if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 2.0F, 1.5F);
+        				p.sendMessage("§c대련 매칭을 거부하였습니다.");
+        				p.closeInventory();
+    				}
+    			}
+    		}
+     	}
+     	
+     	else if (e.getInventory().getName().equalsIgnoreCase("파티 장이 3:3 대련을 진행하자고 합니다.")) {
+     		e.setCancelled(true);
+     		
+     		HumanEntity h = e.getView().getPlayer();
+    		Player p = Bukkit.getPlayerExact(h.getName());
+    		
+    		if (e.getCurrentItem().hasItemMeta()) {
+    			if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
+    				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§f예, 대련에 참가하겠습니다.")) {
+    					String party = PartyAPI.getJoinParty(p);
+    					int num = main.PartyCheck.get(party) + 1;
+    					main.PartyCheck.put(party, num);
+    					
+    					if (num == PartyAPI.getUserInteger(party)) {
+    						if (main.PartyCheck.get(party) != null) main.PartyCheck.remove(party);
+    						main.threeList.add(party);
+    						
+    						for (String user : PartyAPI.getUser(party)) {
+        						Player pl = Method.getOnorOffLine(user);
+        						pl.closeInventory();
+        						pl.sendMessage("§6모두가 대련 매칭을 수락하여 매칭을 §c진행§6합니다.");
+            					pl.sendMessage("§6매치가 잡히면 §c강제로 텔레포트 §6됩니다. 당분간 아무 작업을 수행하지 말아주시기 바랍니다.");
+            					if (me.espoo.option.PlayerYml.getInfoBoolean(pl, "효과음")) pl.playSound(pl.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+        					}
+    					} else {
+    						p.sendMessage("§6성공적으로 대련 매칭을 §c수락§6하셨습니다.");
+    						p.closeInventory();
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+    					}
+    				}
+    				
+    				else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§f아니요, 대련에 참가하지 않겠습니다.")) {
+    					String party = PartyAPI.getJoinParty(p);
+        				if (main.PartyCheck.get(party) != null) main.PartyCheck.remove(party);
+    					
+    					for (String user : PartyAPI.getUser(party)) {
+    						if (user.equalsIgnoreCase(p.getName())) continue;
+    						
+    						Player pl = Method.getOnorOffLine(user);
+    						pl.closeInventory();
+    						pl.sendMessage("§c" + p.getName() + " 님이 매칭을 거부하여 대련을 진행하지 않습니다.");
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(pl, "효과음")) pl.playSound(pl.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    					}
+    					
+        				if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 2.0F, 1.5F);
+        				p.sendMessage("§c대련 매칭을 거부하였습니다.");
+        				p.closeInventory();
+    				}
+    			}
+    		}
+     	}
+     	
+     	else if (e.getInventory().getName().equalsIgnoreCase("대련 하기")) {
+         	e.setCancelled(true);
+         	
+    		HumanEntity h = e.getView().getPlayer();
+    		Player p = Bukkit.getPlayerExact(h.getName());
+    		
+    		if (e.getCurrentItem().hasItemMeta()) {
+    			if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
+    				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§c1:1 §6대련 하기")) {
+    					if (PartyAPI.getJoinParty(p) != null) {
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c당신은 파티가 있으므로 1:1 대련을 진행하실 수 없습니다.");
+    						return;
+    					}
+    					
+    					if (!p.getWorld().getName().equalsIgnoreCase("world_spawn")) {
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c스폰에서만 1:1 대련 매칭을 진행하실 수 있습니다. §e[ /스폰, /spawn ]");
+    						return;
+    					}
+    					
+    					main.oneList.add(p);
+    					p.sendMessage("§6매치가 잡히면 §c강제로 텔레포트 §6됩니다. 당분간 아무 작업을 수행하지 말아주시기 바랍니다.");
+    					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+    					p.closeInventory();
+    				}
+    				
+    				else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§c2:2 §6대련 하기")) {
+    					String party = PartyAPI.getJoinParty(p);
+    					if (party == null) {
+        					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c당신은 파티가 없으므로 2:2 대련을 진행하실 수 없습니다.");
+    						return;
+    					}
+    					
+    					if (!PartyAPI.getManager(party).equalsIgnoreCase(p.getName())) {
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c당신은 파티장이 아니므로 매칭을 진행하실 수 없습니다.");
+    						return;
+    					}
+    					
+    					if (PartyAPI.getUserInteger(party) != 2) {
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c파티원 수가 충족되지 않아 매칭을 진행하실 수 없습니다.");
+    						return;
+    					}
+    					
+    					if (!API.isPartyUserInWorld(party, "world_spawn")) {
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.ITEM_BREAK, 2.0F, 1.5F);
+    						p.sendMessage("§c파티원중 스폰에 있지 않는 사람이 있으므로 매칭을 진행하실 수 없습니다.");
+    						return;
+    					}
+    					
+    					for (String user : PartyAPI.getUser(party)) {
+    						Player pl = Method.getOnorOffLine(user);
+    						GUI.CheckPvPGUI(pl, 2);
+    					}
+    					
+    					if (main.PartyCheck.get(party) != null) main.PartyCheck.remove(party);
+    					main.PartyCheck.put(party, 1);
+    					p.sendMessage("§6파티원들에게 §c대련 참가 여부§6를 물어봅니다.");
+    					if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_PLING, 2.0F, 1.5F);
+    					p.closeInventory();
+    				}
+    				
+    				
+    				
+    				
+    			}
+    		}
+     	}
+     	
+     	else if (e.getInventory().getName().equalsIgnoreCase("매칭 취소")) {
+         	e.setCancelled(true);
+         	
+    		HumanEntity h = e.getView().getPlayer();
+    		Player p = Bukkit.getPlayerExact(h.getName());
+    		
+    		if (e.getCurrentItem().hasItemMeta()) {
+    			if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
+    				if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§c매칭 취소")) {
+    					if (API.isOneVSMatch(p)) {
+    						main.oneList.remove(p);
+    						main.BossBarTimer.remove(p);
+    						p.sendMessage("§61:1 대련 매칭이 §c취소 §6되었습니다.");
+    						p.closeInventory();
+    						BarAPI.removeBar(p);
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 2.0F, 1.5F);
+    					}
+    					
+    					else if (API.isColoVSMatch(p)) {
+    						main.coloList.remove(p);
+    						main.BossBarTimer.remove(p);
+    						p.sendMessage("§6콜로세움 대련 매칭이 §c취소 §6되었습니다.");
+    						p.closeInventory();
+    						BarAPI.removeBar(p);
+    						if (me.espoo.option.PlayerYml.getInfoBoolean(p, "효과음")) p.playSound(p.getLocation(), Sound.NOTE_SNARE_DRUM, 2.0F, 1.5F);
+    					}
+    					
+    					String party = PartyAPI.getJoinParty(p);
+    					if (party != null) {
+    						if (API.isPartyVSMatch(party)) {
+    							API.quitMatchParty(party);
+        						p.closeInventory();
+    							for (String user : PartyAPI.getUser(party)) {
+    								Player pl = Method.getOnorOffLine(user);
+    								if (pl != null) main.BossBarTimer.remove(pl);
+    								pl.sendMessage("§c" + p.getName() + " §6님이 매칭을 §c중단 §6시켰습니다.");
+    								BarAPI.removeBar(pl);
+    							}
+    						}
+    					}
+    				}
+    			}
+    		}
+     	}
+	}
+}

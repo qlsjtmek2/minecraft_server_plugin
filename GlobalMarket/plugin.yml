@@ -1,0 +1,7 @@
+name: GlobalMarket
+main: com.survivorserver.GlobalMarket.Market
+version: 1.2.1
+commands:
+    자유상점:
+        description: Market commands
+depend: [Vault]

@@ -1,0 +1,23 @@
+name: DHFinance
+version: 1.0
+main: me.shinkhan.Finance.Main
+softdepend: []
+author: shinkhan
+
+commands:
+  금융:
+    description: 금융 GUI 창을 엽니다.
+  대출:
+    description: 금융 GUI 창을 엽니다.
+  투자:
+    description: 금융 GUI 창을 엽니다.
+  예금:
+    description: 금융 GUI 창을 엽니다.
+  Bank:
+    description: 금융 GUI 창을 엽니다.
+  BK:
+    description: 금융 GUI 창을 엽니다.
+  ㅂ:
+    description: 금융 GUI 창을 엽니다.
+  ㅇ:
+    description: 금융 GUI 창을 엽니다.

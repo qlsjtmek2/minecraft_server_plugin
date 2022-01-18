@@ -1,0 +1,10 @@
+name: OnePunchInfoStat
+version: 1.0
+main: me.espoo.is.main
+author: shinkhan
+
+commands:
+  상태:
+    description: OnePunchInfoStat Plugin
+  정보:
+    description: OnePunchInfoStat Plugin

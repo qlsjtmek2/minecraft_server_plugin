@@ -1,0 +1,245 @@
+# 이 플러그인은 오직 한개의 서버만을 위해 제작되었습니다.
+# 제작자 : 맛있는하마 (shinkhan)
+# 서버주소 : ESPOO.m2h.kr
+#
+#----------------버킷청소-------------#
+#
+메모리 정리 시간 설정(초): 300
+#
+#----------------motdcolor-------------#
+#
+motd: §6ES§ePOO §f-§a> §f반갑습니다. §a<§f-
+#
+#----------------StopDropRoll-------------#
+#
+Enabled: true
+Degrees spun per second: 100
+Time spinning in seconds: 3
+Enable permissions: false
+#
+#----------------렉방지-------------#
+#
+Main:
+  Use Permissions: false
+Wheat:
+  Enabled: true
+  Only Replant When Fully Grown: false
+  Plant on till: true
+Reeds:
+  Enabled: true
+Netherwart:
+  Enabled: true
+  Only Replant When Fully Grown: false
+Cocoa Beans:
+  Enabled: true
+  Only Replant When Fully Grown: false
+Carrots:
+  Enabled: true
+  Only Replant When Fully Grown: false
+Potatoes:
+  Enabled: true
+  Only Replant When Fully Grown: false
+Pumpkin:
+  Enabled: true
+  Only Replant When Fully Grown: false
+Melon:
+  Enabled: true
+  Only Replant When Fully Grown: false
+#
+#----------------자동농사-------------#
+#
+WorldFarm:
+  Enable Per World: true
+  Enabled Worlds:
+  - skyworld
+  - world_guild
+#
+#----------------올플-------------#
+#
+정지: false
+블럭: false
+무적: false
+채팅: false
+만렙: true
+레벨: 300
+#
+#----------------인첸트-------------#
+#
+protection: 0
+protect: 0
+fireprotection: 1
+fireprotect: 1
+featherfalling: 2
+blastprotect: 3
+blastprotection: 3
+projectileprotection: 4
+projectileprotect: 4
+respiration: 5
+aquaaffinity: 6
+wateraffinity: 6
+thorns: 7
+sharpness: 16
+sharp: 16
+smite: 17
+baneofarthropods: 18
+knockback: 19
+fireaspect: 20
+looting: 21
+loot: 21
+efficiency: 32
+efficient: 32
+silktouch: 33
+unbreaking: 34
+fortune: 35
+power: 48
+punch: 49
+flame: 50
+infinity: 51
+infinite: 51
+#
+#----------------매직시계-------------#
+#
+toggleon: ~6이제부터 ~c모든 플레이어~6가 보이지 않습니다.
+toggleoff: ~6이제부터 ~c모든 플레이어~6가 보이기 시작합니다.
+wait_time: 10
+itemid: 347
+usepermission: false
+#
+#----------------코블스톤 생성기-------------#
+#
+Chances:
+  Stone: 81.89
+  Coal: 10
+  Iron: 6
+  Gold: 2
+  Redstone: 0
+  Lapis: 0
+  Emerald: 0.01
+  Diamond: 0.1
+World:
+- world
+- skyworld
+- world_guild
+#
+#----------------수표-------------#
+#
+ITEMCODE: 339
+#
+#----------------밴아이템-------------#
+#
+Confiscate: false
+UpdateChecker: false
+WorldBlockRemove: false
+Worlds:
+- world
+- skyworld
+- world_nether
+- world_the_end
+- world_dun
+- world_dun2
+- world_dun3
+- world_pvp
+- world_plant
+- world_guild
+Blacklist:
+- '80:-1:'
+- '46:0:이 아이템은 사용할 수 없습니다. '
+- '384:0:이 아이템은 사용할 수 없습니다. '
+- '84:0:이 아이템은 사용할 수 없습니다. '
+- '152:0:이 아이템은 사용할 수 없습니다. '
+- '116:0:이 아이템은 사용할 수 없습니다. '
+- '261:-1:활은 금지되어있습니다. '
+- '331:0:이 아이템은 사용할 수 없습니다. '
+- '259:0:이 아이템은 사용할 수 없습니다. '
+Blacklist Placement: []
+Blacklist Pickup: []
+Blacklist Interaction: []
+Blacklist Click: []
+Blacklist Break: []
+Blacklist World: []
+#
+#----------------조합방지-------------#
+#
+blacklist:
+  items:
+  - 80
+  - 46
+  - 384
+  - 84
+  - 123
+  - 351
+  - '351:1'
+  - '351:2'
+  - '351:3'
+  - '351:5'
+  - '351:6'
+  - '351:7'
+  - '351:8'
+  - '351:9'
+  - '351:10'
+  - '351:11'
+  - '351:12'
+  - '351:13'
+  - '351:14'
+  - '322:1'
+  - 29
+  - 33
+  - 152
+  - 116
+  - 261
+  - 298
+  - 299
+  - 300
+  - 301
+  - 302
+  - 303
+  - 304
+  - 305
+  - 306
+  - 307
+  - 308
+  - 309
+  - 314
+  - 315
+  - 316
+  - 317
+  - 379
+  - 268
+  - 267
+  - 272
+  - 276
+  - 283
+  - 2261
+  - 2262
+  - 2263
+  - 2264
+  - 2267
+  - 2256
+  - 2258
+  - 2257
+  - 2259
+  - 2260
+  - 289
+  - 406
+#
+#----------------자동저장-------------#
+#
+delaysave: 10
+saveworlds:
+- world
+- skyworld
+- world_nether
+- world_the_end
+- world_dun
+- world_dun2
+- world_dun3
+- world_pvp
+- world_guild
+savedebug: false
+placelist:
+  items:
+  - 116
+Config Help: dev.bukkit.org/server-mods/tree-assist/pages/config-walkthrough/
+SETLORE: false
+delay: 0
+  

@@ -1,0 +1,28 @@
+name: OnePunchPvP
+version: 1.0
+main: me.espoo.pvp.main
+author: shinkhan
+
+commands:
+  대련:
+    description: OnePunchPvP Plugin
+  대전:
+    description: OnePunchPvP Plugin
+  PVP:
+    description: OnePunchPvP Plugin
+  대련위치:
+    description: OnePunchPvP Plugin
+  대전위치:
+    description: OnePunchPvP Plugin
+  PVP위치:
+    description: OnePunchPvP Plugin
+  관전:
+    description: OnePunchPvP Plugin
+  배팅:
+    description: OnePunchPvP Plugin
+  대련취소:
+    description: OnePunchPvP Plugin
+  대전취소:
+    description: OnePunchPvP Plugin
+  경기취소:
+    description: OnePunchPvP Plugin

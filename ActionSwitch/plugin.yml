@@ -1,0 +1,16 @@
+name: ActionSwitch
+version: 1.1
+main: me.espoo.switched.main
+author: shinkhan
+
+commands:
+  양털:
+    description: ActionSwitch Plugin
+  양털교환:
+    description: ActionSwitch Plugin
+  양털교환기:
+    description: ActionSwitch Plugin
+  교환기추가:
+    description: ActionSwitch Plugin
+  교환기오픈:
+    description: ActionSwitch Plugin

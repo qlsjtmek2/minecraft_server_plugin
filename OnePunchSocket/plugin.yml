@@ -1,0 +1,10 @@
+name: OnePunchSocket
+version: 1.0
+main: me.espoo.socket.main
+author: shinkhan
+
+commands:
+  소켓오픈:
+    description: OnePunchSocket Plugin
+  소켓:
+    description: OnePunchSocket Plugin

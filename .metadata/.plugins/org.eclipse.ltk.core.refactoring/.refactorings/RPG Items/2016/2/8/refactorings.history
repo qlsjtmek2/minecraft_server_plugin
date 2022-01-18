@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from 프로젝트 &apos;RPG Items&apos;&#x0D;&#x0A;- 원래 프로젝트: &apos;RPG Items&apos;&#x0D;&#x0A;- 원래 요소:&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동RPG Items/src/locale&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동font.bin&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동languages.txt&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동plugin.yml" description="요소 삭제" element1="src/font.bin" element2="src/languages.txt" element3="src/plugin.yml" element4="/src&lt;locale" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1455857743081" subPackages="false" version="1.0"/>
+</session>

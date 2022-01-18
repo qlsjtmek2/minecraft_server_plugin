@@ -1,0 +1,11 @@
+name: FatigueAPI
+version: 1.0
+main: me.shinkhan.fatigue.main
+softdepend: []
+author: shinkhan
+
+commands:
+  fa:
+    description: FatigueAPI Plugin
+  피로도:
+    description: FatigueAPI Plugin

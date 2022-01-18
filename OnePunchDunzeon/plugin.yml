@@ -1,0 +1,12 @@
+name: OnePunchDunzeon
+version: 1.0
+main: me.espoo.dunzeon.main
+author: shinkhan
+
+commands:
+  괴인협회입장:
+    description: OnePunchDunzeon Plugin
+  괴인협회위치:
+    description: OnePunchDunzeon Plugin
+  변수빼기:
+    description: OnePunchDunzeon Plugin

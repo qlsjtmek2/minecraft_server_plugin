@@ -1,0 +1,28 @@
+package me.espoo.rpg.exp;
+
+import org.bukkit.entity.Player;
+
+public class ExpAPI {
+	public static String getDayMessage(Player p) {
+		return PlayerYml.getInfoString(p, "상태 메세지");
+	}
+	
+	public static int getExp(Player p) {
+		return PlayerYml.getInfoInt(p, "경험치");
+	}
+	
+	public static boolean getSeeInfo(Player p) {
+		return PlayerYml.getInfoBoolean(p, "보기");
+	}
+	
+	public static int getRank(String name) {
+		int num = 1;
+		for (String str : ExpYml.ArrayExp()) {
+			if (str.split(",")[0].equalsIgnoreCase(name)) {
+				break;
+			} else num++;
+		}
+		
+		return num;
+	}
+}

@@ -1,0 +1,9 @@
+name: PVPrankRandom
+main: me.espoo.main
+version: 1.0
+softdepend: []
+author: shinkhan
+
+commands:
+  rank:
+    description: PVPrank

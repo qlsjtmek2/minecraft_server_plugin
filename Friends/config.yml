@@ -1,0 +1,17 @@
+# 친구가 말하는 채팅을 보여주게 합니다.
+Chat: true
+# 친구 초대 시간 딜레이를 설정합니다.
+Timer: 60
+# 머리를 클릭하면 실행되는 부분입니다. 
+# @p = 클릭한 플레이어
+# @t = 클릭당한 플레이어
+Commands:
+  Left Click: 
+    Command: 친구 삭제 @t
+    Description: 친구 목록에서 제거합니다.
+  Right Click: 
+    Command: party invite @t
+    Description: 파티에 초대합니다. (연동 플러그인)
+  Shift Click: 
+    Command: tell @t @p says Hello! 
+    Description: Hello! 라고 말합니다.

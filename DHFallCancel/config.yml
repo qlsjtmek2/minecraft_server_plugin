@@ -1,0 +1,7 @@
+# 제작자 : 맛있는하마 (shinkhan)
+# FallDamage에 true, false 말고 다른 값을 넣지 말아주세요.
+# FallDamage 부분을 true하면 낙사 데미지가 없어지고 false 하시면 낙사 데미지가 생깁니다.
+# UserPermission 부분을 true하면 노드가 있어야 방지가 되고, false 하면 노드가 없어도 방지가 됩니다.
+
+FallDamage: true
+UserPermission: false

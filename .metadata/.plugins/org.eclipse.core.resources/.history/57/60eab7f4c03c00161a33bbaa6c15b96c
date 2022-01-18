@@ -1,0 +1,51 @@
+package me.espoo.score;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class mainEvent extends JavaPlugin implements Listener {
+	main M;
+	
+	public mainEvent(main main)
+	{
+		this.M = main;
+	}
+	
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void onChat(final AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+		String str = null;
+		
+        if (PlayerYml.getInfoBoolean(p, "등록여부") == false) {
+			sender.sendMessage(RED + "이 플레이어는 히어로에 가입되어있지 않습니다.");
+		}
+		
+		String str;
+		if (Method.getPlayerRanking(p.getName()) <= 15) {
+			str = "§4S";
+		}
+		
+		else if (Method.getPlayerScore(p.getName()) >= 30000 && Method.getPlayerRanking(p.getName()) > 15) {
+			str = "§cA";
+		}
+		
+		else if (Method.getPlayerScore(p.getName()) >= 4000 && Method.getPlayerScore(p.getName()) < 30000 && Method.getPlayerRanking(p.getName()) > 15) {
+			str = "§bB";
+		}
+		
+		else if (Method.getPlayerScore(p.getName()) < 4000 && PlayerYml.getInfoBoolean(p, "등록") && Method.getPlayerRanking(p.getName()) > 15)
+		{
+			str = "§eC";
+		}
+		
+		else {
+			str = "없음";
+		}
+		
+        e.setFormat(String.valueOf(pp.getMainPrefix()) + " §r" + e.getFormat());
+    }
+}

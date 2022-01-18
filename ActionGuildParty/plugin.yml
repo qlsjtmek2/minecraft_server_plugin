@@ -1,0 +1,24 @@
+name: ActionGuildParty
+version: 1.1
+main: me.espoo.rpg.main
+author: shinkhan
+
+commands:
+  길드:
+    description: ActionGuildParty Plugin
+  expg:
+    description: ActionGuildParty Plugin
+  guild:
+    description: ActionGuildParty Plugin
+  파티:
+    description: ActionGuildParty Plugin
+  expp:
+    description: ActionGuildParty Plugin
+  party:
+    description: ActionGuildParty Plugin
+  chatmode:
+    description: ActionGuildParty Plugin
+  cm:
+    description: ActionGuildParty Plugin
+  채팅모드:
+    description: ActionGuildParty Plugin

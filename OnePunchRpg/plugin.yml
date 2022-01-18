@@ -1,0 +1,28 @@
+name: OnePunchRpg
+version: 1.0
+main: me.espoo.rpg.main
+author: shinkhan
+
+commands:
+  경험치:
+    description: OnePunchRpg Plugin
+  exp:
+    description: OnePunchRpg Plugin
+  길드:
+    description: OnePunchRpg Plugin
+  expg:
+    description: OnePunchRpg Plugin
+  guild:
+    description: OnePunchRpg Plugin
+  파티:
+    description: OnePunchRpg Plugin
+  expp:
+    description: OnePunchRpg Plugin
+  party:
+    description: OnePunchRpg Plugin
+  chatmode:
+    description: OnePunchRpg Plugin
+  cm:
+    description: OnePunchRpg Plugin
+  채팅모드:
+    description: OnePunchRpg Plugin

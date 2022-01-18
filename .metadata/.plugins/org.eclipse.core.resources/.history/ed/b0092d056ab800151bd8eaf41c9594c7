@@ -1,0 +1,40 @@
+﻿package me.tpsw.RpgStatsSystem.event;
+
+import me.tpsw.RpgStatsSystem.api.RpgStats;
+import me.tpsw.RpgStatsSystem.api.StatsAPI;
+import me.tpsw.RpgStatsSystem.api.StatsPlayer;
+import me.tpsw.RpgStatsSystem.api.StatsRunAPI;
+
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.*;
+
+public class blockEventBase implements Listener {
+
+	@EventHandler
+	public void onBreak(BlockBreakEvent event) {
+		if (!event.isCancelled()) {
+			StatsPlayer sp = StatsAPI.getStatsPlayer(event.getPlayer().getName());
+			Material block = event.getBlock().getType();
+			if (block == Material.COAL_ORE || block == Material.IRON_ORE || block == Material.GOLD_ORE || block == Material.DIAMOND_ORE || block == Material.REDSTONE_ORE
+					|| block == Material.LAPIS_ORE) {
+				if (!(event.getPlayer().getItemInHand() == null) && event.getPlayer().getItemInHand().getItemMeta().getEnchants().containsKey(Enchantment.SILK_TOUCH)) return;
+				for (RpgStats rs : StatsAPI.StatsSet.ORE) {
+					StatsRunAPI.BlockBreak(sp, rs, event);
+				}
+				return;
+			}
+			if (block == Material.SEEDS || block == Material.WHEAT || block == Material.MELON_BLOCK || block == Material.COCOA || block == Material.SAPLING|| block == Material.POTATO|| block == Material.CARROT) {
+				for (RpgStats rs : StatsAPI.StatsSet.PLANTS) {
+					StatsRunAPI.BlockBreak(sp, rs, event);
+				}
+				return;
+			}
+			for (RpgStats rs : StatsAPI.StatsSet.BREAK) {
+				StatsRunAPI.BlockBreak(sp, rs, event);
+			}
+		}
+	}
+}

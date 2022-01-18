@@ -1,0 +1,5 @@
+name: DHPrivateGUI
+version: 1.0
+author: shinkhan
+softdepend: []
+main: me.shinkhan.pgui.main

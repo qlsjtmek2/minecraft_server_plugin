@@ -1,0 +1,11 @@
+name: DHStrengthen
+version: 1.0
+author: shinkhan
+softdepend: []
+main: me.shinkhan.Streng.main
+
+commands:
+   강화:
+      description: LifeAbilityLoot command
+   강화추가:
+      description: LifeAbilityLoot command

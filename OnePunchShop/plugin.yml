@@ -1,0 +1,8 @@
+name: OnePunchShop
+version: 1.0
+main: me.espoo.sellshop.main
+author: shinkhan
+
+commands:
+  판매상점:
+    description: OnePunchShop Plugin

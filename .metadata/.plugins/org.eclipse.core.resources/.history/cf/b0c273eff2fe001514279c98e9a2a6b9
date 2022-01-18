@@ -1,0 +1,309 @@
+package me.espoo.rpg.exp;
+
+import java.io.File;
+import java.util.List;
+import java.util.Scanner;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import me.espoo.rpg.Method;
+import me.espoo.rpg.main;
+
+public class ExpCommand extends JavaPlugin implements CommandExecutor, Listener {
+	@SuppressWarnings("unused")
+	private final main plugin;
+	public static final ChatColor YELLOW = ChatColor.YELLOW;
+	public static final ChatColor GOLD = ChatColor.GOLD;
+	public static final ChatColor WHITE = ChatColor.WHITE;
+	public static final ChatColor BLUE = ChatColor.AQUA;
+	public static final ChatColor RED = ChatColor.RED;
+	public static final ChatColor DARK_RED = ChatColor.DARK_RED;
+	public static final ChatColor GRAY = ChatColor.GRAY;
+	
+	public ExpCommand(main instance)
+	{
+		this.plugin = instance;
+	}
+	
+	@SuppressWarnings("resource")
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+	{
+		try {
+			if (commandLabel.equalsIgnoreCase("경험치")) {
+				if (args.length == 0) {
+					if (sender instanceof Player) {
+						displayHelp(sender);
+						return false;
+					} else {
+						sender.sendMessage(WHITE + "[" + DARK_RED + "경고" + WHITE + "]" + RED + " 콘솔에선 실행이 불가능한 명령어 입니다.");
+						return false;
+					}
+				}
+				
+				if (sender instanceof Player) {
+					Player p = (Player) sender;
+					if (args[0].equalsIgnoreCase("확인") && args.length == 1 || args[0].equalsIgnoreCase("전적") && args.length == 1)
+					{
+						sender.sendMessage("§e * " + p.getName() + " §7:: §f" + ExpAPI.getDayMessage(p));
+						sender.sendMessage("§e ┗━━ §c경험치 §7:: §f" + ExpAPI.getExp(p));
+						sender.sendMessage("§e ┗━━ §c플레이어 순위 §7:: §f" + ExpAPI.getRank(p.getName()));
+						sender.sendMessage("§e ┗━━ §c소켓 보너스 §7:: §f" + PlayerYml.getInfoInt(p, "보너스") + "%");
+						return false;
+					}
+					
+					if (args[0].equalsIgnoreCase("확인") && args.length == 2 || args[0].equalsIgnoreCase("전적") && args.length == 2) {
+						Player pl = Method.getOnorOffLine(Method.searchOnlinePlayer(args[1]));
+						
+						if (pl == null) {
+							sender.sendMessage(RED + "이 플레이어는 존재하지 않습니다.");
+							return false;
+						}
+						
+						if (sender.isOp())
+						{
+							sender.sendMessage("§e * " + pl.getName() + " §7:: §f" + ExpAPI.getDayMessage(pl));
+							sender.sendMessage("§e ┗━━ §c경험치 §7:: §f" + ExpAPI.getExp(pl));
+							sender.sendMessage("§e ┗━━ §c플레이어 순위 §7:: §f" + ExpAPI.getRank(pl.getName()));
+							sender.sendMessage("§e ┗━━ §c소켓 보너스 §7:: §f" + PlayerYml.getInfoInt(pl, "보너스") + "%");
+							return false;
+						}
+						
+						if (ExpAPI.getSeeInfo(pl))
+						{
+							sender.sendMessage("§e * " + pl.getName() + " §7:: §f" + ExpAPI.getDayMessage(pl));
+							sender.sendMessage("§e ┗━━ §c경험치 §7:: §f" + ExpAPI.getExp(pl));
+							sender.sendMessage("§e ┗━━ §c플레이어 순위 §7:: §f" + ExpAPI.getRank(pl.getName()));
+							sender.sendMessage("§e ┗━━ §c소켓 보너스 §7:: §f" + PlayerYml.getInfoInt(pl, "보너스") + "%");
+							return false;
+						}
+						
+						else
+						{
+							sender.sendMessage(RED + "상대방이 전적 보기를 허가하지 않았습니다.");
+							return false;
+						}
+					}
+					
+					else if (args[0].equalsIgnoreCase("순위") && args.length == 1 || args[0].equalsIgnoreCase("랭킹") && args.length == 1)
+					{
+						List<String> list = ExpYml.ArrayExp();
+						int i = 1;
+						
+						sender.sendMessage("§c" + list.size() + " §6명의 유저를 찾았습니다. §c1§6/§c" + list.size() / 10);
+						for (String str : list)
+						{
+							if (i >= 16) break;
+							sender.sendMessage(GOLD + " ┗━ " + RED + i + "위 " + GRAY + ":: " + WHITE + "[" + DARK_RED + "S" + WHITE + "] " + str.split(",")[0] + " / " + str.split(",")[1]);
+							i++;
+						}
+						sender.sendMessage(YELLOW + "---------------------------------------------------");
+						return false;
+					}
+					
+					else if (args[0].equalsIgnoreCase("계급도"))
+					{
+						sender.sendMessage("§6---------------------------------");
+						sender.sendMessage("§e * §f뉴비 §f[§e프로 히어로 등록§f]-> §eC");
+						sender.sendMessage("§e * §eC §f[§e4000점§f]-> §dB");
+						sender.sendMessage("§e * §dB §f[§e30000점§f]-> §cA");
+						sender.sendMessage("§e * §cA §f[§e랭킹 15위 내§f]-> §4S");
+						sender.sendMessage("§6---------------------------------");
+						return false;
+					}
+					
+					else if (args[0].equalsIgnoreCase("설정"))
+					{
+						if (!sender.isOp())
+						{
+							sender.sendMessage(RED + "당신은 명령어를 실행할 권한이 없습니다.");
+							return false;
+						}
+						
+						if (!(args.length == 3))
+						{
+							sender.sendMessage(BLUE + "/경험치 <설정/추가/빼기> <닉네임> <값> " + WHITE + "- 플레이어의 경험치를 변경합니다.");
+							return false;
+						}
+						
+						String str = Method.searchOnlinePlayer(args[1]);
+						File f = new File("plugins/OnePunchScore/Player/" + str + ".yml");
+						if (!f.exists())
+						{
+							sender.sendMessage(RED + "그 플레이어는 존재하지 않습니다.");
+							return false;
+						}
+						
+						if (Method.getOnorOffLine(str) == null) {
+							sender.sendMessage(RED + "그 플레이어는 온라인 상태가 아닙니다.");
+							return false;
+						}
+						
+						Scanner scan = new Scanner(args[2]);
+						if (!scan.hasNextInt())
+						{
+							sender.sendMessage(RED + "<값>에 숫자값만 입력해 주십시오.");
+							return false;
+						}
+
+						Player argsP = Method.getOnorOffLine(str);
+						ExpYml.setPlayerExp(argsP.getName(), Integer.parseInt(args[2]));
+						sender.sendMessage("§6성공적으로 §c" + args[1] + "§6님의 경험치를 §c" + args[2] + " §6만큼 설정하였습니다.");
+						return false;
+					}
+					
+					else if (args[0].equalsIgnoreCase("추가"))
+					{
+						if (!sender.isOp())
+						{
+							sender.sendMessage(RED + "당신은 명령어를 실행할 권한이 없습니다.");
+							return false;
+						}
+						
+						if (!(args.length == 3))
+						{
+							sender.sendMessage(BLUE + "/경험치 <설정/추가/빼기> <닉네임> <값> " + WHITE + "- 플레이어의 경험치를 변경합니다.");
+							return false;
+						}
+						
+						String str = Method.searchOnlinePlayer(args[1]);
+						File f = new File("plugins/OnePunchScore/Player/" + str + ".yml");
+						if (!f.exists())
+						{
+							sender.sendMessage(RED + "그 플레이어는 존재하지 않습니다.");
+							return false;
+						}
+						
+						if (Method.getOnorOffLine(str) == null) {
+							sender.sendMessage(RED + "그 플레이어는 온라인 상태가 아닙니다.");
+							return false;
+						}
+						
+						Scanner scan = new Scanner(args[2]);
+						if (!scan.hasNextInt())
+						{
+							sender.sendMessage(RED + "<값>에 숫자값만 입력해 주십시오.");
+							return false;
+						}
+
+						Player argsP = Method.getOnorOffLine(str);
+						if (PlayerYml.getInfoBoolean(argsP, "등록여부") == false)
+						{
+							return false;
+						}
+						
+						int i = Integer.parseInt(args[2]);
+						ExpYml.addPlayerExp(argsP.getName(), i);
+						sender.sendMessage("§6성공적으로 §c" + args[1] + "§6님의 킬 수를 §c" + args[2] + " §6만큼 추가했습니다.");
+						return false;
+					}
+					
+					else if (args[0].equalsIgnoreCase("빼기"))
+					{
+						if (!sender.isOp())
+						{
+							sender.sendMessage(RED + "당신은 명령어를 실행할 권한이 없습니다.");
+							return false;
+						}
+						
+						if (!(args.length == 3))
+						{
+							sender.sendMessage(BLUE + "/경험치 <설정/추가/빼기> <닉네임> <값> " + WHITE + "- 플레이어의 경험치를 변경합니다.");
+							return false;
+						}
+						
+						String str = Method.searchOnlinePlayer(args[1]);
+						File f = new File("plugins/OnePunchScore/Player/" + str + ".yml");
+						if (!f.exists())
+						{
+							sender.sendMessage(RED + "그 플레이어는 존재하지 않습니다.");
+							return false;
+						}
+						
+						if (Method.getOnorOffLine(str) == null) {
+							sender.sendMessage(RED + "그 플레이어는 온라인 상태가 아닙니다.");
+							return false;
+						}
+						
+						Scanner scan = new Scanner(args[2]);
+						if (!scan.hasNextInt())
+						{
+							sender.sendMessage(RED + "<값>에 숫자값만 입력해 주십시오.");
+							return false;
+						}
+
+						Player argsP = Method.getOnorOffLine(str);
+						ExpYml.subPlayerExp(argsP.getName(), Integer.parseInt(args[2]));
+						sender.sendMessage("§6성공적으로 §c" + args[1] + "§6님의 킬 수를 §c" + args[2] + " §6만큼 뻈습니다.");
+						return false;
+					}
+					
+					else if (args[0].equalsIgnoreCase("보기") && args.length == 2)
+					{
+						if (args[1].equalsIgnoreCase("허용"))
+						{
+							if (ExpAPI.getSeeInfo(p) == true)
+							{
+								sender.sendMessage("§c이미 전적 보기를 허용하셨습니다.");
+								return false;
+							}
+							  
+							PlayerYml.setInfoBoolean(p, "보기", true);
+							sender.sendMessage("§6당신은 상대방이 전적을 보는 것을 §c허용§6했습니다.");
+							return false;
+						}
+						  
+						else if (args[1].equalsIgnoreCase("거부"))
+						{
+							if (ExpAPI.getSeeInfo(p) == false)
+							{
+								sender.sendMessage("§c이미 전적 보기를 불허하셨습니다.");
+								return false;
+							}
+
+							PlayerYml.setInfoBoolean(p, "보기", false);
+							sender.sendMessage("§6당신은 상대방이 전적을 보는 것을 §c거부§6했습니다.");
+							return false;
+						}
+					}
+				} else {
+					sender.sendMessage(WHITE + "[" + DARK_RED + "경고" + WHITE + "]" + RED + " 콘솔에선 실행이 불가능한 명령어 입니다.");
+					return false;
+				}
+			}
+		} catch (NumberFormatException ex) {
+			if (sender instanceof Player) {
+				displayHelp(sender);
+				return false;
+			} else {
+				sender.sendMessage(WHITE + "[" + DARK_RED + "경고" + WHITE + "]" + RED + " 콘솔에선 실행이 불가능한 명령어 입니다.");
+				return false;
+			}
+		} return false;
+	}
+	
+	private void displayHelp(CommandSender sender)
+	{
+		sender.sendMessage(" §e------ §6경험치 §e--- §6도움말 §e------");
+		sender.sendMessage("§6/경험치 §f- 경험치 명령어를 확인합니다.");
+		sender.sendMessage("§6/경험치 확인 §f- 자신의 경험치와 관련된 값을 확인합니다.");
+		sender.sendMessage("§6/경험치 확인 <닉네임> §f- 플레이어의 경험치와 관련된 값을 확인합니다.");
+		sender.sendMessage("§6/경험치 순위 §f- 경험치 관련 플레이어의 모든 순위를 봅니다.");
+		sender.sendMessage("§6/경험치 보상 §f- 경험치로 획득 가능한 보상을 봅니다.");
+		sender.sendMessage("§6/경험치 보기 <허용/거부> §f- 프로필 공개 여부를 허용하거나 거부합니다. §b( 기본값 비허용 )");
+		
+		if (sender.isOp())
+		{
+			sender.sendMessage("§f");
+			sender.sendMessage("§b/경험치 <설정/추가/빼기> <닉네임> <값> §f- 플레이어의 경험치를 변경합니다.");
+			sender.sendMessage("§b/경험치 주기 <타입> <닉네임> <값> §f- 경험치를 타입별로 줍니다. §b(Type - kill, break)");
+			sender.sendMessage("§b/경험치 이벤트 <값> <시간>(h,m,s) §f- 경험치 보너스 이벤트를 진행합니다.");
+			sender.sendMessage("§b/경험치 아이템 <타입> <값> <시간>(h,m,s,infinite) <아이템코드> §f- 경험치 추가 아이템을 생성합니다.");
+		}
+	}
+}

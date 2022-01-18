@@ -1,0 +1,9 @@
+name: DHBoatPrevent
+version: 1.1
+main: me.shinkhan.boat.main
+softdepend: []
+author: shinkhan
+
+commands:
+  boatcheck:
+    description: DHBoatPrevent plugin

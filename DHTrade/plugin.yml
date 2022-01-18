@@ -1,0 +1,8 @@
+name: DHTrade
+version: 1.1
+main: me.shinkhan.trade.main
+commands:
+  거래:
+    description: DHTrade Plugin
+  교환:
+    description: DHTrade Plugin

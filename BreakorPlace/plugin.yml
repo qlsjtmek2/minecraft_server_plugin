@@ -1,0 +1,9 @@
+name: BreakorPlace
+version: 1.0
+main: me.shinkhan.bop.main
+softdepend: []
+author: shinkhan
+
+commands:
+  bopcheck:
+    description: BreakorPlace plugin

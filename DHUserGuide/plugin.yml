@@ -1,0 +1,16 @@
+name: DHUserGuide
+version: 1.0
+main: me.shinkhan.userguide.main
+author: shinkhan
+
+commands:
+  유저가이드:
+    description: DHUserGuide Plugin
+  가이드:
+    description: DHUserGuide Plugin
+  guide:
+    description: DHUserGuide Plugin
+  userguide:
+    description: DHUserGuide Plugin
+  ug:
+    description: DHUserGuide Plugin

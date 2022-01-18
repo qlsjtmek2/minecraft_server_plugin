@@ -1,0 +1,9 @@
+name: FlyScore
+main: me.espoo.score.main
+version: 1.0
+softdepend: []
+author: shinkhan
+
+commands:
+  FS:
+    description: FlyScore server

@@ -1,0 +1,12 @@
+﻿name: RsPrefix
+version: 1.1
+main: kr.tpsw.rsprefix.Main
+author: TPsw
+
+commands:
+    칭호:
+    prefix:
+    pradmin:
+        permission: 'rsprefix.admin'
+    칭호관리:
+        permission: 'rsprefix.admin'

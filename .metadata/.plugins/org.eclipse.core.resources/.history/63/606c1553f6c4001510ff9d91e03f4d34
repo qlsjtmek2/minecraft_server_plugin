@@ -1,0 +1,380 @@
+package me.espoo.seteffect;
+
+import java.util.Date;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import me.espoo.file.PlayerYml;
+import to.oa.tpsw.rpgexpsystem.api.Rpg;
+import to.oa.tpsw.rpgexpsystem.api.RpgPlayer;
+
+@SuppressWarnings("deprecation")
+public class mainEvent extends JavaPlugin implements Listener {
+	main M;
+	me.espoo.punchstat.Method E;
+	
+	public mainEvent(main main)
+	{
+		this.M = main;
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		Player p = e.getPlayer();
+		
+		if (!p.isOp()) {
+			Timer timer1 = new Timer();
+			Date timeToRun = new Date(System.currentTimeMillis() + 300);
+			timer1.schedule(new TimerTask() {
+				public void run() {
+					Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "fly " + p.getName() + " off");
+					p.setFlySpeed(0.2F);
+				}
+			}, timeToRun);	
+		}
+	}
+
+	@SuppressWarnings("static-access")
+	@EventHandler
+	public void onPlayerSneak(PlayerToggleSneakEvent e) 
+	{
+		Player p = e.getPlayer();
+		if (M.Sn.get(p.getName()) == null) {
+			M.Sn.put(p.getName(), 0);
+			
+			M.Timer.put(p.getName(), new BukkitRunnable()
+			{
+				public void run()
+				{
+					Integer ie = main.Timer.remove(p.getName());
+					if (ie != null) Bukkit.getServer().getScheduler().cancelTask(ie);
+					if (M.Sn.get(p.getName()) != null) M.Sn.remove(p.getName());
+					return;
+				}
+			}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 40, 40).getTaskId());
+		} else {
+			int y = M.Sn.get(p.getName()) + 1;
+			M.Sn.put(p.getName(), y);
+		}
+		
+		int i = M.Sn.get(p.getName());
+		if (i >= 5) {
+			M.Sn.put(p.getName(), 0);
+			
+			if (Method.isHelmetItem(p, " 타츠마키 모자") && Method.isChestplateItem(p, " 타츠마키 튜닉")
+			 && Method.isLeggingsItem(p, " 타츠마키 바지") && Method.isBootsItem(p, " 타츠마키 신발")) {
+				Method.flyPlayer(p, 28);
+			}
+			
+			else if (Method.isHelmetItem(p, " 아토믹 사무라이 모자") && Method.isChestplateItem(p, " 아토믹 사무라이 튜닉")
+				  && Method.isLeggingsItem(p, " 아토믹 사무라이 바지") && Method.isBootsItem(p, " 아토믹 사무라이 신발")) {
+				if (!(main.swordSpem.contains(p))) {
+					main.swordSpem.add(p);
+					main.swordTime.put(p.getName(), 9);
+					p.performCommand("cast 아토믹검기");
+					p.sendMessage("§e□ §b장비 능력 §f- 아토믹 사무라이 검기 §3스킬을 시전합니다.");
+					
+					main.swordCool.put(p.getName(), new BukkitRunnable()
+					{
+						int CoolDown = main.swordTime.get(p.getName());
+						@Override
+						public void run()
+						{
+							if (CoolDown <= 0) {
+		                		if (main.swordSpem.contains(p)) main.swordSpem.remove(p);
+		                		if (main.swordTime.containsKey(p.getName())) main.swordTime.remove(p.getName());
+		                		Integer id = main.swordCool.remove(p.getName());
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							} else {
+								CoolDown -= 1;
+								main.swordTime.put(p.getName(), CoolDown);
+							}
+						}
+					}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 0L, 20L).getTaskId());
+				} else {
+					p.sendMessage("§3스킬 재 사용시간 까지는 " + main.swordTime.get(p.getName()) + " 초 남았습니다.");
+				}
+			}
+			
+			else if (Method.isHelmetItem(p, " 동제 모자") && Method.isChestplateItem(p, " 동제 튜닉")
+				  && Method.isLeggingsItem(p, " 동제 바지") && Method.isBootsItem(p, " 동제 신발")) {
+				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "chc open 동제 " + p.getName());
+			}
+			
+			else if (Method.isHelmetItem(p, " 메탈나이트 투구") && Method.isChestplateItem(p, " 메탈나이트 갑옷")
+				  && Method.isLeggingsItem(p, " 메탈나이트 레깅스") && Method.isBootsItem(p, " 메탈나이트 부츠")) {
+				if (!(main.matilSpem.contains(p))) {
+					main.matilSpem.add(p);
+					main.matilTime.put(p.getName(), 10);
+					p.performCommand("cast 메탈나이트");
+					p.sendMessage("§e□ §b장비 능력 §f- 메탈 나이트 미사일 §3스킬을 시전합니다.");
+					
+					main.matilCool.put(p.getName(), new BukkitRunnable()
+					{
+						int CoolDown = main.matilTime.get(p.getName());
+						@Override
+						public void run()
+						{
+							if (CoolDown <= 0) {
+		                		if (main.matilSpem.contains(p)) main.matilSpem.remove(p);
+		                		if (main.matilTime.containsKey(p.getName())) main.matilTime.remove(p.getName());
+		                		Integer id = main.swordCool.remove(p.getName());
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							} else {
+								CoolDown -= 1;
+								main.matilTime.put(p.getName(), CoolDown);
+							}
+						}
+					}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 0L, 20L).getTaskId());
+				} else {
+					p.sendMessage("§3스킬 재 사용시간 까지는 " + main.matilTime.get(p.getName()) + " 초 남았습니다.");
+				}
+			}
+			
+			else if (Method.isHelmetItem(p, " 좀비맨 모자") && Method.isChestplateItem(p, " 좀비맨 튜닉")
+				  && Method.isLeggingsItem(p, " 좀비맨 바지") && Method.isBootsItem(p, " 좀비맨 신발")) {
+				if (!(main.zombieSpem.contains(p))) {
+					main.zombieSpem.add(p);
+					main.zombieTime.put(p.getName(), 20);
+					p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 7, true));
+					p.sendMessage("§e□ §b장비 능력 §f- 좀비맨 재생 §3스킬을 시전합니다.");
+					
+					main.zombieCool.put(p.getName(), new BukkitRunnable()
+					{
+						int CoolDown = main.zombieTime.get(p.getName());
+						@Override
+						public void run()
+						{
+							if (CoolDown <= 0) {
+								if (main.zombieSpem.contains(p)) main.zombieSpem.remove(p);
+								if (main.zombieTime.containsKey(p.getName())) main.zombieTime.remove(p.getName());
+								Integer id = main.zombieCool.remove(p.getName());
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							} else {
+								CoolDown -= 1;
+								main.zombieTime.put(p.getName(), CoolDown);
+							}
+						}
+					}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 0L, 20L).getTaskId());
+				} else {
+					p.sendMessage("§3스킬 재 사용시간 까지는 " + main.zombieTime.get(p.getName()) + " 초 남았습니다.");
+				}
+			}
+			
+			else if (Method.isHelmetItem(p, " 돈신 모자") && Method.isChestplateItem(p, " 돈신 튜닉")
+				  && Method.isLeggingsItem(p, " 돈신 바지") && Method.isBootsItem(p, " 돈신 신발")) {
+				if (!(main.foodGodSpem.contains(p))) {
+					main.foodGodSpem.add(p);
+					main.foodGodTime.put(p.getName(), 14);
+					p.performCommand("cast 돈신");
+					p.sendMessage("§e□ §b장비 능력 §f- 돈신 속박 §3스킬을 시전합니다.");
+					
+					main.foodGodCool.put(p.getName(), new BukkitRunnable()
+					{
+						int CoolDown = main.foodGodTime.get(p.getName());
+						@Override
+						public void run()
+						{
+							if (CoolDown <= 0) {
+								if (main.foodGodSpem.contains(p)) main.foodGodSpem.remove(p);
+								if (main.foodGodTime.containsKey(p.getName())) main.foodGodTime.remove(p.getName());
+								Integer id = main.foodGodCool.remove(p.getName());
+								if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+								return;
+							} else {
+								CoolDown -= 1;
+								main.foodGodTime.put(p.getName(), CoolDown);
+							}
+						}
+					}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 0L, 20L).getTaskId());
+				} else {
+					p.sendMessage("§3스킬 재 사용시간 까지는 " + main.foodGodTime.get(p.getName()) + " 초 남았습니다.");
+				}
+			}
+			
+			else if (Method.isHelmetItem(p, " 번견맨 모자") && Method.isChestplateItem(p, " 번견맨 튜닉")
+					  && Method.isLeggingsItem(p, " 번견맨 바지") && Method.isBootsItem(p, " 번견맨 신발")) {
+					if (!(main.dogSpem.contains(p))) {
+						main.dogSpem.add(p);
+						main.dogTime.put(p.getName(), 8);
+						p.performCommand("cast 번견맨");
+						p.sendMessage("§e□ §b장비 능력 §f- 번견맨 기습 §3스킬을 시전합니다.");
+						
+						main.dogCool.put(p.getName(), new BukkitRunnable()
+						{
+							int CoolDown = main.dogTime.get(p.getName());
+							@Override
+							public void run()
+							{
+								if (CoolDown <= 0) {
+									if (main.dogSpem.contains(p)) main.dogSpem.remove(p);
+									if (main.dogTime.containsKey(p.getName())) main.dogTime.remove(p.getName());
+									Integer id = main.dogCool.remove(p.getName());
+									if (id != null) Bukkit.getServer().getScheduler().cancelTask(id);
+									return;
+								} else {
+									CoolDown -= 1;
+									main.dogTime.put(p.getName(), CoolDown);
+								}
+							}
+						}.runTaskTimer(Bukkit.getPluginManager().getPlugin("OnePunchSetEffect"), 0L, 20L).getTaskId());
+					} else {
+						p.sendMessage("§3스킬 재 사용시간 까지는 " + main.dogTime.get(p.getName()) + " 초 남았습니다.");
+					}
+				}
+		}
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
+	public void onEntityDamage(EntityDamageByEntityEvent e) {
+		if (e.getEntity() instanceof Player) {
+			Player p = (Player) e.getEntity();
+			
+			if (Method.isHelmetItem(p, " 실버팽 모자") && Method.isChestplateItem(p, " 실버팽 튜닉")
+			 && Method.isLeggingsItem(p, " 실버팽 레깅스") && Method.isBootsItem(p, " 실버팽 신발")) {
+				int i = new Random().nextInt(10) + 1;
+				if (i <= 4) {
+					e.setCancelled(true);
+				}
+			}
+			
+			else if (Method.isHelmetItem(p, " 초합금 검은빛 모자") && Method.isChestplateItem(p, " 초합금 검은빛 튜닉")
+				  && Method.isLeggingsItem(p, " 초합금 검은빛 바지") && Method.isBootsItem(p, " 초합금 검은빛 신발")) {
+				int i = e.getDamage();
+				e.setDamage((i / 10) * 6);
+			}
+		}
+		
+		if (e.getDamager() instanceof Player) {
+			Player p = (Player) e.getDamager();
+			Entity en = e.getEntity();
+			
+			if (Method.isHelmetItem(p, " 섬광의 플래시 모자") && Method.isChestplateItem(p, " 섬광의 플래시 튜닉")
+			 && Method.isLeggingsItem(p, " 섬광의 플래시 바지") && Method.isBootsItem(p, " 섬광의 플래시 신발")) {
+				en.setTicksLived(20);
+				e.setDamage(3);
+			}
+		}
+	}
+	
+	@SuppressWarnings("static-access")
+	@EventHandler
+	public void onPlayerChat(PlayerChatEvent e) {
+		Player p = e.getPlayer();
+		
+		if (main.DongJaInfo.contains(p)) {
+			String str = Method.searchOnlinePlayer(e.getMessage());
+			if (str == null) {
+				e.setCancelled(true);
+				p.sendMessage("§c그 플레이어는 존재하지 않습니다.");
+			} else {
+				Player t = Method.getOnorOffLine(str);
+				if (t == null) {
+					e.setCancelled(true);
+					p.sendMessage("§c그 플레이어는 온라인이 아닙니다.");
+				} else {
+					e.setCancelled(true);
+					main.DongJaInfo.remove(p);
+					Method.PlayerInfoGUI(t, p);
+				}
+			}
+		}
+		
+		if (main.DongJaPos.contains(p)) {
+			String str = Method.searchOnlinePlayer(e.getMessage());
+			if (str == null) {
+				e.setCancelled(true);
+				p.sendMessage("§c그 플레이어는 존재하지 않습니다.");
+			} else {
+				Player t = Method.getOnorOffLine(str);
+				if (t == null) {
+					e.setCancelled(true);
+					p.sendMessage("§c그 플레이어는 온라인이 아닙니다.");
+				} else {
+					e.setCancelled(true);
+					main.DongJaPos.remove(p);
+					
+					boolean isOp = p.isOp();
+					p.setOp(true);
+					p.performCommand("getpos " + t.getName());
+					if (!isOp) p.setOp(false); p.setOp(false); p.setOp(false); p.setOp(false); p.setOp(false);
+				}
+			}
+		}
+		
+		if (main.DongJaState.contains(p)) {
+			String str = Method.searchOnlinePlayer(e.getMessage());
+			if (str == null) {
+				e.setCancelled(true);
+				p.sendMessage("§c그 플레이어는 존재하지 않습니다.");
+			} else {
+				Player t = Method.getOnorOffLine(str);
+				if (t == null) {
+					e.setCancelled(true);
+					p.sendMessage("§c그 플레이어는 온라인이 아닙니다.");
+				} else {
+					e.setCancelled(true);
+					main.DongJaState.remove(p);
+					
+					int i = E.get1Stat(p) + PlayerYml.getInfoInt(p, "팔 근력");
+					int x = E.get2Stat(p) + PlayerYml.getInfoInt(p, "복근");
+					int y = E.get3Stat(p) + PlayerYml.getInfoInt(p, "다리 근력");
+					int z = E.get4Stat(p) + PlayerYml.getInfoInt(p, "스피드");
+					RpgPlayer rt = Rpg.getRpgPlayera(t.getName());
+					
+					p.sendMessage("§a■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+					p.sendMessage("§a§l▼ §f§l이  름 : §6§l" + t.getName());
+					p.sendMessage("§a§l▼ §c§l생명력 : §4§l" + t.getHealth() + "§c§l/§4§l" + t.getMaxHealth());
+					p.sendMessage("§a§l▼ §e§l레벨 : §c§l" + rt.getRpgExp());
+					p.sendMessage("§a§l▼ §6§l팔 근력 스텟 : §e§l" + i);
+					p.sendMessage("§a§l▼ §d§l복근 스텟 : §5§l" + x);
+					p.sendMessage("§a§l▼ §a§l다리 근력 스텟 : §2§l" + y);
+					p.sendMessage("§a§l▼ §b§l스피드 스텟 : §3§l" + z + "§b§l/§3§l200");
+					p.sendMessage("§a§l▼ §3§l상  태 :");
+					if (t.hasPotionEffect(PotionEffectType.POISON)) p.sendMessage("                     §2■[중독]");
+					if (t.hasPotionEffect(PotionEffectType.NIGHT_VISION)) p.sendMessage("                     §1■[야간투시]");
+					if (t.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) p.sendMessage("                     §6■[화염저항]");
+					if (t.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) p.sendMessage("                     §c■[공격력 증가]");
+					if (t.hasPotionEffect(PotionEffectType.WEAKNESS)) p.sendMessage("                     §5■[나약함]");
+					if (t.hasPotionEffect(PotionEffectType.SPEED)) p.sendMessage("                     §b■[속도 증가]");
+					if (t.hasPotionEffect(PotionEffectType.SLOW)) p.sendMessage("                     §9■[속도 감소]");
+					if (t.hasPotionEffect(PotionEffectType.INVISIBILITY)) p.sendMessage("                     §f■[투명화]");
+					if (t.hasPotionEffect(PotionEffectType.WITHER)) p.sendMessage("                     §0■[혼돈]");
+					if (t.hasPotionEffect(PotionEffectType.JUMP)) p.sendMessage("                     §b■[점프력 강화]");
+					if (t.hasPotionEffect(PotionEffectType.HUNGER)) p.sendMessage("                     §2■[허기]");
+					if (t.hasPotionEffect(PotionEffectType.FAST_DIGGING)) p.sendMessage("                     §e■[채굴속도 향상]");
+					if (t.hasPotionEffect(PotionEffectType.REGENERATION)) p.sendMessage("                     §d■[회복력 향상]");
+					if (t.hasPotionEffect(PotionEffectType.WATER_BREATHING)) p.sendMessage("                     §3■[수중 호홉]");
+					if (t.hasPotionEffect(PotionEffectType.CONFUSION)) p.sendMessage("                     §d■[혼란]");
+					if (t.hasPotionEffect(PotionEffectType.BLINDNESS)) p.sendMessage("                     §8■[실명]");
+					if (!t.hasPotionEffect(PotionEffectType.POISON) && !t.hasPotionEffect(PotionEffectType.NIGHT_VISION) && !t.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE) &&
+						!t.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE) && !t.hasPotionEffect(PotionEffectType.WEAKNESS) && !t.hasPotionEffect(PotionEffectType.SPEED) &&
+						!t.hasPotionEffect(PotionEffectType.SLOW) && !t.hasPotionEffect(PotionEffectType.INVISIBILITY) && !t.hasPotionEffect(PotionEffectType.WITHER) &&
+						!t.hasPotionEffect(PotionEffectType.JUMP) && !t.hasPotionEffect(PotionEffectType.HUNGER) && !t.hasPotionEffect(PotionEffectType.FAST_DIGGING) && 
+						!t.hasPotionEffect(PotionEffectType.REGENERATION) && !t.hasPotionEffect(PotionEffectType.WATER_BREATHING) && !t.hasPotionEffect(PotionEffectType.CONFUSION) &&
+						!t.hasPotionEffect(PotionEffectType.BLINDNESS)) p.sendMessage("                     §a■[정상]");
+					p.sendMessage("§a■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+#PATele1: 첫번째 플레이어 대련 스폰 장소 설정
+#PATele2: 두번째 플레이어 대련 스폰 장소 설정
+#PATele3: 관전자 텔레포트 장소
+#PATele4: 대련 후 이동되는 스폰
+#PVPTime: PVP 시간
+#PVPLastExitTime: 끝나고 몇초 후 이동되는 시간
+#PVPAcceptTime: 몇초 후 대전신청이 끝나는지
+#PVPFirstStartTime: PVP 시작 대기 시간
+#PVPGodTime: 시작후 무적 시간
+PATele1: 0, 0, 0, 0, 0, world
+PATele2: 0, 0, 0, 0, 0, world
+PATele3: 0, 0, 0, 0, 0, world
+PATele4: 0, 0, 0, 0, 0, world
+PVPTime: 60
+PVPLastExitTime: 5
+PVPAcceptTime: 15
+PVPFirstStartTime: 10
+PVPGodTime: 5

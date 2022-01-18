@@ -1,0 +1,10 @@
+name: OnePunchBook
+version: 1.1
+main: me.espoo.book.main
+author: shinkhan
+
+commands:
+  도감:
+    description: OnePunchBook Plugin
+  in:
+    description: OnePunchBook Plugin

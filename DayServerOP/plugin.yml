@@ -1,0 +1,15 @@
+name: DayServerOP
+version: 1.0
+main: me.espoo.dsop.main
+softdepend: []
+author: shinkhan
+
+commands:
+  opsgive:
+    description: DayServerOP plugin
+  og:
+    description: DayServerOP plugin
+  opstake:
+    description: DayServerOP plugin
+  ot:
+    description: DayServerOP plugin

@@ -1,0 +1,10 @@
+name: DHCoercionChatChanel
+main: me.shinkhan.ccc.main
+author: shinkhan
+version: 1.0
+
+commands:
+  채팅소외:
+    description: DHCoercionChatChanel plugin
+  ccc:
+    description: DHCoercionChatChanel plugin

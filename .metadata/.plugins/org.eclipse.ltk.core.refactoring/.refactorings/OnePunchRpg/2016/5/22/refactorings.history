@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;MagicSpells/src/com.nisovin.magicspells.zones&apos;&#x0D;&#x0A;- 원래 프로젝트: &apos;OnePunchRpg&apos;&#x0D;&#x0A;- 대상 요소: &apos;MagicSpells/src/com.nisovin.magicspells.zones&apos;&#x0D;&#x0A;- 원래 요소:&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동me.espoo.rpg.guild.GuildAPI.java&#x0D;&#x0A;JavaRefactoringDescriptorComment_textual_move_only=텍스트만 이동me.espoo.rpg.guild.GuildYml.java" description="여러 컴파일 단위 복사" destination="=MagicSpells/src&lt;com.nisovin.magicspells.zones" element1="/src&lt;me.espoo.rpg.guild{GuildAPI.java" element2="/src&lt;me.espoo.rpg.guild{GuildYml.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1463992463615" units="2" version="1.0"/>
+</session>

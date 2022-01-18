@@ -1,0 +1,10 @@
+name: ActionUpgrade
+version: 1.2
+main: me.espoo.upgrade.main
+author: shinkhan
+
+commands:
+  축복기회추가:
+    description: ActionUpgrade Plugin
+  축복:
+    description: ActionUpgrade Plugin

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/신희곤/Desktop/프로그래밍 폴더/플긴만들기/자작 플러그인/플러그인 실험/craftbukkit.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,18 @@
+name: Auto arm
+version: 0.8
+author: firecopy
+main: me.firecopy.autoarm.AutoArm
+commands:
+  autoarm:
+    description: puts the strongest weapon and armor on the player.
+    alias: arm
+permissions:
+  autoarm.arm:
+    description: Gives the permission for auto arm.
+    default: false
+  autoarm.message:
+    description: Toggle's if players see the autoarm message.
+    default: true
+  autoarm.autodiamond:
+    description: Automatic best armor
+    default: false

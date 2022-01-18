@@ -1,0 +1,10 @@
+name: DHTreasureChest
+version: 1.0
+main: me.shinkhan.treasurechest.main
+author: shinkhan
+
+commands:
+  보물상자생성:
+    description: DHTreasureChest Plugin
+  보물상자GUI:
+    description: DHTreasureChest Plugin
